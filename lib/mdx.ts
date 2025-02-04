@@ -52,10 +52,6 @@ function getMDXData(dir: string) {
   });
 }
 
-export function getDocs(dir: string) {
-  return getMDXData(path.join(process.cwd(), dir));
-}
-
 export function formatDate(date: string, includeRelative = false) {
   const currentDate = new Date();
   if (!date.includes("T")) {
