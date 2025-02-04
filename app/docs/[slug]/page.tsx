@@ -1,12 +1,11 @@
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
-  const { default: Doc, metadata } = await import(`@/docs/${slug}.mdx`);
+
+  console.log(slug);
+  const { default: Doc, metadata } = await import(`@/docs/digital-nutrition/${slug}.mdx`);
 
   return (
     <div className="space-y-8">
-      <h1>{metadata.title}</h1>
-      <h1>{metadata.summary}</h1>
-      <h1>{metadata.period}</h1>
       <Doc />
     </div>
   );
