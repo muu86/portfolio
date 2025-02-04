@@ -1,7 +1,7 @@
 export function Career() {
   return (
-    <section className="sm:px-8 mt-24 md:mt-28">
-      <div className="w-full max-w-7xl mx-auto lg:px-8">
+    <section className="mt-24 sm:px-8 md:mt-28">
+      <div className="mx-auto w-full max-w-7xl lg:px-8">
         <div className="relative px-4 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-2xl lg:max-w-5xl">
             <h1>디지털 뉴트리션</h1>
@@ -76,13 +76,13 @@ function Project({ title, description, period }: ProjectProps) {
     <article className="group relative flex flex-col items-start">
       <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
         <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50"></div>
-        <a href="/articles/crafting-a-design-system-for-a-multiplanetary-future">
+        <a href="/docs/nextjs">
           <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
           <span className="relative z-10">{title}</span>
         </a>
       </h2>
       <time
-        className="relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5"
+        className="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-400 dark:text-zinc-500"
         dateTime="2022-09-05"
       >
         <span className="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
