@@ -36,7 +36,7 @@ export default async function DocsLayout({ children }: { children: React.ReactNo
           </div>
         </aside>
       </div>
-      <div className="w-full max-w-3xl md:px-6">{children}</div>
+      <div className="w-full max-w-4xl md:px-6">{children}</div>
     </div>
   );
 }

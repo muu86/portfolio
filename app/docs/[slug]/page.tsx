@@ -1,12 +1,19 @@
+import { getTableOfContents } from "@/lib/mdx";
+import { DashboardTableOfContents } from "@/components/toc";
+
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
 
-  console.log(slug);
-  const { default: Doc, metadata } = await import(`@/docs/digital-nutrition/${slug}.mdx`);
-
+  const { default: Doc } = await import(`@/docs/digital-nutrition/${slug}.mdx`);
+  const toc = await getTableOfContents(Doc);
   return (
-    <div className="space-y-8">
-      <Doc />
+    <div className="relative flex gap-10 space-y-8">
+      <div className="mx-auto max-w-2xl">
+        <Doc />
+      </div>
+      <div className="sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4">
+        <DashboardTableOfContents toc={toc} />
+      </div>
     </div>
   );
 }

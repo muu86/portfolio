@@ -1,6 +1,6 @@
-import { IndentProps, Tab } from '@/components/highlighting/tab';
-import { Brace } from '@/components/highlighting/brace';
-import { Children, Fragment, PropsWithChildren } from 'react';
+import { IndentProps, Tab } from "@/components/highlighting/tab";
+import { Brace } from "@/components/highlighting/brace";
+import { Children, Fragment, PropsWithChildren } from "react";
 
 type Props = IndentProps & {
   name: string;
@@ -13,7 +13,7 @@ export function FunctionCall({ name, firstLineIndent, level = 0, children }: Pro
     <>
       {firstLineIndent && <Tab level={level} />}
       {name}
-      <Brace type="parenthesis" open />
+      <Brace type="(" />
       <br />
       {Children.map(children, (child, index) => (
         <Fragment key={index}>
@@ -24,7 +24,7 @@ export function FunctionCall({ name, firstLineIndent, level = 0, children }: Pro
         </Fragment>
       ))}
       <Tab level={level} />
-      <Brace type="parenthesis" />
+      <Brace type=")" />
     </>
   );
 }

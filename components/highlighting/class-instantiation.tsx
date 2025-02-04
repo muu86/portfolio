@@ -1,6 +1,6 @@
-import { Children, Fragment, PropsWithChildren } from 'react';
-import { Brace } from '@/components/highlighting/brace';
-import { Tab } from '@/components/highlighting/tab';
+import { Children, Fragment, PropsWithChildren } from "react";
+import { Brace } from "@/components/highlighting/brace";
+import { Tab } from "@/components/highlighting/tab";
 
 type Props = {
   name: string;
@@ -13,7 +13,7 @@ export function ClassInstantiation({ name, level = 0, firstLineIndent, children 
     <>
       {firstLineIndent && <Tab level={level} />}
       {name}
-      <Brace open />
+      <Brace type="{" />
       <br />
       {Children.map(children, (child, index) => (
         <Fragment key={index}>
@@ -22,7 +22,7 @@ export function ClassInstantiation({ name, level = 0, firstLineIndent, children 
         </Fragment>
       ))}
       <Tab level={level} />
-      <Brace />
+      <Brace type="}" />
       <br />
     </>
   );
