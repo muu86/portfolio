@@ -11,7 +11,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <div className="mx-auto max-w-2xl">
         <Doc />
       </div>
-      <div className="sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4">
+      <div className="sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4 text-sm">
         <DashboardTableOfContents toc={toc} />
       </div>
     </div>
