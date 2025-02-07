@@ -4,7 +4,10 @@ import { cn } from "@/lib/utils";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-      <h1 className={cn("font-heading mt-2 scroll-m-20 text-4xl font-bold", className)} {...props} />
+      <h1
+        className={cn("font-heading mt-20 scroll-m-20 text-4xl font-extrabold first-of-type:mt-6", className)}
+        {...props}
+      />
     ),
     h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
       <h2
