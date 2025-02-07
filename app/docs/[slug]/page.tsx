@@ -4,7 +4,7 @@ import { DashboardTableOfContents } from "@/components/toc";
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
 
-  const { default: Doc } = await import(`@/docs/digital-nutrition/${slug}.mdx`);
+  const { default: Doc } = await import(`@/docs/${slug}.mdx`);
   const toc = await getTableOfContents(Doc);
   return (
     <div className="relative flex gap-10 space-y-8">
@@ -27,7 +27,7 @@ export async function generateStaticParams() {
 
   return [
     {
-      slug: "nextjs",
+      slug: "digital-nutrition",
     },
   ];
 }

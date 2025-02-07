@@ -157,7 +157,7 @@ const getToc = () => (node, file) => {
 export type TableOfContents = Items;
 
 export async function getTableOfContents(content: string): Promise<TableOfContents> {
-  const file = fs.readFileSync(path.join(process.cwd(), "docs", "digital-nutrition", "nextjs.mdx"), {
+  const file = fs.readFileSync(path.join(process.cwd(), "docs", "digital-nutrition.mdx"), {
     encoding: "utf8",
   });
   const result = await remark().use(getToc).process(file);
