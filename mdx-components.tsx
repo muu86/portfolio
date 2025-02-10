@@ -45,6 +45,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     li: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
       <li className={cn("mt-2", className)} {...props} />
     ),
+    pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
+      <pre
+        className={cn("mt-6 mb-4 overflow-auto rounded-lg bg-zinc-950 px-4 py-2 dark:bg-zinc-900", className)}
+        {...props}
+      />
+    ),
+    code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+      <code className={cn("relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm", className)} {...props} />
+    ),
     ...components,
   };
 }
