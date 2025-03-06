@@ -1,7 +1,7 @@
 export default async function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="md relative mx-auto max-w-svw px-4 py-10 md:flex md:flex-row">
-      <div className="w-full max-w-4xl font-sans md:px-6">{children}</div>
+    <div className="relative mx-auto max-w-svw">
+      <div className="mt-20 w-full max-w-4xl">{children}</div>
     </div>
   );
 }

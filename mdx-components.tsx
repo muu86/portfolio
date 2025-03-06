@@ -5,14 +5,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
       <h1
-        className={cn("font-heading mt-20 scroll-m-20 text-4xl font-extrabold first-of-type:mt-6", className)}
+        className={cn("font-heading mt-20 scroll-m-30 text-4xl font-extrabold first-of-type:mt-6", className)}
         {...props}
       />
     ),
     h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
       <h2
         className={cn(
-          "font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
+          "font-heading mt-12 scroll-m-30 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
           className,
         )}
         {...props}
