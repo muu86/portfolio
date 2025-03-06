@@ -5,7 +5,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const slug = (await params).slug;
 
   const { default: Doc } = await import(`@/docs/${slug}.mdx`);
-  const toc = await getTableOfContents(Doc);
+  const toc = await getTableOfContents(slug);
   return (
     <div className="relative flex gap-10 space-y-8">
       <div className="mx-auto max-w-2xl">
@@ -28,6 +28,9 @@ export async function generateStaticParams() {
   return [
     {
       slug: "digital-nutrition",
+    },
+    {
+      slug: "uniitech",
     },
   ];
 }
