@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from "@/lib/utils";
 
 type Props = {
   name: string;
@@ -6,5 +6,5 @@ type Props = {
 };
 
 export function Keyword({ name, className }: Props) {
-  return <span className={clsx('text-indigo-700 dark:text-orange-400', className)}>{name}</span>;
+  return <span className={cn("text-indigo-700 dark:text-orange-400", className)}>{name}</span>;
 }
