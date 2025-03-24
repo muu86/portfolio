@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import { MainNav } from "@/components/main-nav";
+import { CollapseContextProvider } from "@/components/collapse/context";
 
 const notoSans = Noto_Sans_KR({
   variable: "--font-noto-sans",
@@ -27,10 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${notoSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="flex min-h-svh flex-col">
-          <MainNav />
-          {children}
-        </div>
+        <CollapseContextProvider>
+          <div className="flex min-h-svh w-full flex-col">
+            {/*<MainNav />*/}
+            {children}
+          </div>
+        </CollapseContextProvider>
       </body>
     </html>
   );

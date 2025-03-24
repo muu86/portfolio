@@ -32,6 +32,17 @@
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
   --radius: 0.6rem;
+
+  --aws-purple: hsl(260.8 100% 65.5%);
+  --aws-purple-dimmed: hsl(260.8 100% 65.5% / 0.5);
+  --aws-orange: hsl(29 100% 46%);
+  --aws-orange-dimmed: hsl(29 100% 46% / 0.5);
+  --aws-olive: hsl(77 76% 36%);
+  --aws-olive-dimmed: hsl(77 76% 36% / 0.5);
+  --aws-charcoal: hsl(215 27% 19%);
+  --aws-charcoal-dimmed: hsl(215 27% 19% / 0.5);
+  --aws-cyan: hsl(181 99% 33%);
+  --aws-cyan-dimmed: hsl(181 99% 33% / 0.5);
 }
 
 .dark {
@@ -59,6 +70,18 @@
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
   --chart-5: hsl(340 75% 55%);
+
+  /*--aws-purple: #8C4FFF;*/
+  --aws-purple: hsl(260.8 100% 65.5%);
+  --aws-purple-dimmed: hsl(260.8 100% 65.5% / 0.5);
+  --aws-orange: hsl(29 100% 46%);
+  --aws-orange-dimmed: hsl(29 100% 46% / 0.5);
+  --aws-olive: hsl(77 76% 36%);
+  --aws-olive-dimmed: hsl(77 76% 36% / 0.5);
+  --aws-charcoal: hsl(215 27% 19%);
+  --aws-charcoal-dimmed: hsl(215 27% 19% / 0.5);
+  --aws-cyan: hsl(181 99% 33%);
+  --aws-cyan-dimmed: hsl(181 99% 33% / 0.5);
 }
 
 @theme inline {
@@ -93,6 +116,24 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-soft: 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075), 0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075), 0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+
+  --color-aws-purple: var(--aws-purple);
+  --color-aws-purple-dimmed: var(--aws-purple-dimmed);
+  --color-aws-orange: var(--aws-orange);
+  --color-aws-orange-dimmed: var(--aws-orange-dimmed);
+  --color-aws-olive: var(--aws-olive);
+  --color-aws-olive-dimmed: var(--aws-olive-dimmed);
+  --color-aws-charcoal: var(--aws-charcoal);
+  --color-aws-charcoal-dimmed: var(--aws-charcoal-dimmed);
+  --color-aws-cyan: var(--aws-cyan);
+  --color-aws-cyan-dimmed: var(--aws-cyan-dimmed);
+
+  --spacing-50svh: 50svh;
+  --spacing-50svh-top-nav: calc(50svh + var(--spacing-top-nav));
+  --spacing-top-nav: calc(var(--spacing) * 20);
+  --spacing-vh: calc(100svh - var(--spacing-top-nav));
 }
 
 @layer base {
@@ -115,6 +156,11 @@
 @utility no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+@utility clip-hexagon {
+  /*clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);*/
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
 
 @layer base {
