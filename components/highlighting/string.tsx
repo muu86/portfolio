@@ -9,9 +9,7 @@ type Props = ComponentPropsWithoutRef<"span"> & {
 export function String({ className, children }: Props) {
   return (
     <>
-      {/*<span className={cn('text-gray-400 text-xl', className)}>“</span>*/}
-      <span className={cn("text-xl font-bold text-black dark:text-gray-50", className)}>{children}</span>
-      {/*<span className={cn('text-gray-400 text-xl', className)}>”</span>*/}
+      <span className={cn("font-bold text-black dark:text-gray-50", className)}>{children}</span>
     </>
   );
 }

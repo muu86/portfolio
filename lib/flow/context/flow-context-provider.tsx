@@ -1,14 +1,12 @@
 "use client";
 
 import { createContext, PropsWithChildren, useContext, useRef } from "react";
-import { createFlowStore, FlowStore } from "@/lib/flow/store/create-store";
 import { useStore } from "zustand";
+import { createFlowStore, FlowStore } from "@/lib/flow/store";
 
 export type FlowStoreApi = ReturnType<typeof createFlowStore>;
 
-export const FlowStoreContext = createContext<FlowStoreApi | undefined>(
-  undefined,
-);
+export const FlowStoreContext = createContext<FlowStoreApi | undefined>(undefined);
 
 export function FlowStoreProvider({ children }: PropsWithChildren) {
   const storeRef = useRef<FlowStoreApi | null>(null);
@@ -16,11 +14,7 @@ export function FlowStoreProvider({ children }: PropsWithChildren) {
     storeRef.current = createFlowStore();
   }
 
-  return (
-    <FlowStoreContext.Provider value={storeRef.current}>
-      {children}
-    </FlowStoreContext.Provider>
-  );
+  return <FlowStoreContext.Provider value={storeRef.current}>{children}</FlowStoreContext.Provider>;
 }
 
 export const useFlowStore = <T,>(selector: (store: FlowStore) => T): T => {

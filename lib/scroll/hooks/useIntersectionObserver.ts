@@ -1,8 +1,13 @@
 import { useEffect, useRef } from "react";
 import { useScrollStore } from "@/lib/scroll/context/scroll-context-provider";
+import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
 
 export function useIntersectionObserver() {
   const setSelectedId = useScrollStore((s) => s.setSelectedId);
+
+  const edgeMap = useScrollStore((s) => s.edgeMap);
+  const edges = useFlowStore((s) => s.edges);
+  const setSelectedEdgeIndex = useFlowStore((s) => s.setSelectedEdgeIndex);
 
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -19,13 +24,23 @@ export function useIntersectionObserver() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setSelectedId(entry.target.getAttribute("data-scroll-id"));
+            const scrollId = entry.target.getAttribute("data-scroll-id");
+
+            setSelectedId(scrollId);
+
+            const edge = scrollId ? edgeMap?.get(scrollId) : undefined;
+            if (!edge) {
+              setSelectedEdgeIndex(-1);
+            } else {
+              const { source, target } = edge;
+              setSelectedEdgeIndex(edges.findIndex((edge) => edge.sourceId === source && edge.targetId === target));
+            }
           }
         });
       },
       {
         root: null,
-        rootMargin: "-40% 0% -50% 0%",
+        rootMargin: "-20% 0% -20% 0%",
       },
     );
 

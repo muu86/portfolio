@@ -1,13 +1,15 @@
 import { createStore } from "zustand/vanilla";
 import { devtools } from "zustand/middleware";
-import { Coordinates, Dimension, Edge, Node, NodeUpdate } from "@/lib/flow/common/types";
+import { Edge, Node, NodeUpdate, Rect } from "@/lib/flow/common/types";
 
 export type FlowState = {
   nodes: Map<string, Node>;
   edges: Edge[];
 
-  x: number;
-  y: number;
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
   width: number;
   height: number;
 
@@ -15,6 +17,8 @@ export type FlowState = {
   mutationObserver: MutationObserver | null;
 
   isScrolling: boolean;
+
+  selectedEdgeIndex: number;
 };
 
 export type FlowAction = {
@@ -22,13 +26,15 @@ export type FlowAction = {
   addEdge: (edge: Edge) => void;
 
   updateNodes: (updates: NodeUpdate[]) => void;
-  updateContainerCoordinates: (coordinates: Coordinates) => void;
-  updateContainerDimensions: (dimension: Dimension) => void;
+
+  updateContainerRect: (rect: Rect) => void;
 
   setResizeObserver: (resizeObserver: ResizeObserver | null) => void;
   setMutationObserver: (mutationObserver: MutationObserver | null) => void;
 
   setIsScrolling: (isScrolling: boolean) => void;
+
+  setSelectedEdgeIndex: (index: number) => void;
 };
 
 export type FlowStore = FlowState & FlowAction;
@@ -37,8 +43,10 @@ export const defaultInitState: FlowState = {
   nodes: new Map<string, Node>(),
   edges: [],
 
-  x: 0,
-  y: 0,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
   width: 500,
   height: 500,
 
@@ -46,6 +54,8 @@ export const defaultInitState: FlowState = {
   mutationObserver: null,
 
   isScrolling: false,
+
+  selectedEdgeIndex: -1,
 };
 
 export function createFlowStore(initState: FlowState = defaultInitState) {
@@ -53,10 +63,6 @@ export function createFlowStore(initState: FlowState = defaultInitState) {
     devtools(
       (set, get) => ({
         ...initState,
-
-        addNode: (node: Node) => {
-          set((s) => ({ nodes: new Map(s.nodes).set(node.id, node) }));
-        },
 
         addEdge: (edge: Edge) => {
           const { edges } = get();
@@ -84,12 +90,8 @@ export function createFlowStore(initState: FlowState = defaultInitState) {
           set({ nodes: new Map(nodes) });
         },
 
-        updateContainerCoordinates: ({ x, y }: Coordinates) => {
-          set({ x, y });
-        },
-
-        updateContainerDimensions: ({ width, height }: Dimension) => {
-          set({ width, height });
+        updateContainerRect: ({ top, right, bottom, left, width, height }: Rect) => {
+          set({ top, right, bottom, left, width, height });
         },
 
         setResizeObserver: (resizeObserver: ResizeObserver | null) => {
@@ -103,13 +105,17 @@ export function createFlowStore(initState: FlowState = defaultInitState) {
         setIsScrolling: (isScrolling: boolean) => {
           set({ isScrolling });
         },
-      }),
-      {
-        name: "node-store",
-        serialize: {
-          replacer: (key, value) => (value instanceof Map ? [...value] : value),
+
+        setSelectedEdgeIndex: (index: number) => {
+          set({ selectedEdgeIndex: index });
         },
-      },
+      }),
+      // {
+      //   name: "node-store",
+      //   serialize: {
+      //     replacer: (key, value) => (value instanceof Map ? [...value] : value),
+      //   },
+      // },
     ),
   );
 }

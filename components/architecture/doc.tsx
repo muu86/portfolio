@@ -10,27 +10,17 @@ export type ArchitectureDocProps = {
 
 export function ArchitectureDoc({ id, children }: PropsWithChildren<ArchitectureDocProps>) {
   const selectedId = useScrollStore((s) => s.selectedId);
+  const isScrolling = useScrollStore((s) => s.isScrolling);
+
   const ref = useRef<HTMLElement | null>(null);
-
-  const observer = useScrollStore((s) => s.intersectionObserver);
-
-  useEffect(() => {
-    if (ref.current === null) return;
-
-    observer?.observe(ref.current);
-
-    return () => {
-      observer?.disconnect();
-    };
-  }, [observer]);
 
   useEffect(() => {
     if (ref.current === null) return;
 
     if (id !== selectedId) return;
 
-    ref.current.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" });
-  }, [id, selectedId]);
+    ref.current.scrollIntoView({ behavior: isScrolling ? "smooth" : "instant", block: "nearest", inline: "center" });
+  }, [id, selectedId, isScrolling]);
 
   return (
     <article ref={ref} className={cn("flex h-svh w-full flex-col justify-center")}>

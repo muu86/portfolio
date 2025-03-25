@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
 
 export function useContainerRef() {
-  const updateContainerDimensions = useFlowStore((s) => s.updateContainerDimensions);
-  const updateContainerCoordinates = useFlowStore((s) => s.updateContainerCoordinates);
+  const updateContainerRect = useFlowStore((s) => s.updateContainerRect);
   const setIsScrolling = useFlowStore((s) => s.setIsScrolling);
 
   const ref = useRef<HTMLDivElement | null>(null);
@@ -13,26 +12,32 @@ export function useContainerRef() {
       return;
     }
 
-    const resizeObserver = new ResizeObserver(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    const update = () => {
       if (ref.current == null) {
         return;
       }
 
-      const { x, y, width, height } = ref.current.getBoundingClientRect();
-      updateContainerCoordinates({ x, y });
-      updateContainerDimensions({ width, height });
-    });
+      const { top, right, bottom, left, width, height } = ref.current.getBoundingClientRect();
 
-    if (ref.current != null) {
-      resizeObserver.observe(ref.current);
-    }
+      console.log(top, left);
+      updateContainerRect({ top, right, bottom, left, width, height });
+    };
+
+    update();
+
+    const resizeObserver = new ResizeObserver(update);
+    resizeObserver.observe(ref.current);
 
     const updateIsScrolling = () => {
       setIsScrolling(true);
 
       setTimeout(() => {
         setIsScrolling(false);
-      }, 800);
+      }, 1000);
     };
 
     window.addEventListener("scroll", updateIsScrolling);
@@ -42,7 +47,8 @@ export function useContainerRef() {
 
       window.removeEventListener("scroll", updateIsScrolling);
     };
-  }, [updateContainerCoordinates, updateContainerDimensions, setIsScrolling]);
+    // }, [updateContainerCoordinates, updateContainerDimensions, setIsScrolling]);
+  }, [updateContainerRect, setIsScrolling]);
 
   return ref;
 }

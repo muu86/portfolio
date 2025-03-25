@@ -6,5 +6,5 @@ type Props = {
 };
 
 export function Right({ className, children }: PropsWithChildren<Props>) {
-  return <div className={cn("basis-sm", className)}>{children}</div>;
+  return <div className={cn("relative basis-sm", className)}>{children}</div>;
 }

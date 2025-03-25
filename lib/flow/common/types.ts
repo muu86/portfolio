@@ -31,7 +31,6 @@ export type Node = Rect & {
 
 export type NodeUpdate = {
   id: string;
-  // element: Element;
   rect: Rect;
 };
 
@@ -40,5 +39,7 @@ export type Edge = {
   targetId: string;
   sourcePosition: Position;
   targetPosition: Position;
-  type: string;
+  type: EdgeType;
 };
+
+export type EdgeType = "bezier" | "smooth-step";

@@ -1,4 +1,4 @@
-import { Position, type Coordinates } from "@/lib/flow/common/types";
+import { Position, type Coordinates, Node } from "@/lib/flow/common/types";
 
 // this is used for straight edges and simple smoothstep edges (LTR, RTL, BTT, TTB)
 export function getEdgeCenter({
@@ -216,34 +216,6 @@ function getBend(a: Coordinates, b: Coordinates, c: Coordinates, size: number): 
   return `L ${x},${y + bendSize * yDir}Q ${x},${y} ${x + bendSize * xDir},${y}`;
 }
 
-/**
- * The `getSmoothStepPath` util returns everything you need to render a stepped path
- *between two nodes. The `borderRadius` property can be used to choose how rounded
- *the corners of those steps are.
- * @public
- * @param params.sourceX - The x position of the source handle
- * @param params.sourceY - The y position of the source handle
- * @param params.sourcePosition - The position of the source handle (default: Position.Bottom)
- * @param params.targetX - The x position of the target handle
- * @param params.targetY - The y position of the target handle
- * @param params.targetPosition - The position of the target handle (default: Position.Top)
- * @returns A path string you can use in an SVG, the labelX and labelY position (center of path) and offsetX, offsetY between source handle and label
- * @example
- * ```js
- *  const source = { x: 0, y: 20 };
- *  const target = { x: 150, y: 100 };
- *
- *  const [path, labelX, labelY, offsetX, offsetY] = getSmoothStepPath({
- *    sourceX: source.x,
- *    sourceY: source.y,
- *    sourcePosition: Position.Right,
- *    targetX: target.x,
- *    targetY: target.y,
- *    targetPosition: Position.Left,
- *  });
- * ```
- * @remarks This function returns a tuple (aka a fixed-size array) to make it easier to work with multiple edge paths at once.
- */
 export function getSmoothStepPath({
   sourceX,
   sourceY,
@@ -280,4 +252,112 @@ export function getSmoothStepPath({
   }, "");
 
   return [path, labelX, labelY, offsetX, offsetY];
+}
+
+export function getRelativeRect({
+  source,
+  sourcePosition,
+  target,
+  targetPosition,
+  cx,
+  cy,
+}: {
+  source: Node;
+  sourcePosition: Position;
+  target: Node;
+  targetPosition: Position;
+  cx?: number;
+  cy?: number;
+}) {
+  const [startX, startY] = getCoordinates(source, sourcePosition);
+  const [targetX, targetY] = getCoordinates(target, targetPosition);
+
+  return {
+    sx: startX,
+    sy: startY,
+    tx: targetX,
+    ty: targetY,
+  };
+}
+
+export function getCoordinates(node: Node, position: Position) {
+  const { top, right, bottom, left, width, height } = node;
+
+  switch (position) {
+    case Position.Top:
+      return [left + width / 2, top];
+    case Position.Right:
+      return [right, top + height / 2];
+    case Position.Bottom:
+      return [left + 8, bottom];
+    default:
+      return [left, top + height / 2];
+  }
+}
+
+export function calcBezier({
+  sx,
+  sy,
+  sp,
+  tx,
+  ty,
+  tp,
+}: {
+  sx: number;
+  sy: number;
+  sp: Position;
+  tx: number;
+  ty: number;
+  tp: Position;
+}) {
+  const curvature = 0.25;
+
+  const [sourceControlX, sourceControlY] = getControlWithCurvature({
+    pos: sp,
+    x1: sx,
+    y1: sy,
+    x2: tx,
+    y2: ty,
+    c: curvature,
+  });
+  const [targetControlX, targetControlY] = getControlWithCurvature({
+    pos: tp,
+    x1: tx,
+    y1: ty,
+    x2: sx,
+    y2: sy,
+    c: curvature,
+  });
+
+  return `M${sx},${sy} C${sourceControlX},${sourceControlY} ${targetControlX},${targetControlY} ${tx},${ty}`;
+}
+
+export function calculateControlOffset(distance: number, curvature: number): number {
+  if (distance >= 0) {
+    return 0.5 * distance;
+  }
+
+  return curvature * 25 * Math.sqrt(-distance);
+}
+
+export type GetControlWithCurvatureParams = {
+  pos: Position;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  c: number;
+};
+
+export function getControlWithCurvature({ pos, x1, y1, x2, y2, c }: GetControlWithCurvatureParams): [number, number] {
+  switch (pos) {
+    case Position.Left:
+      return [x1 - calculateControlOffset(x1 - x2, c), y1];
+    case Position.Right:
+      return [x1 + calculateControlOffset(x2 - x1, c), y1];
+    case Position.Top:
+      return [x1, y1 - calculateControlOffset(y1 - y2, c)];
+    case Position.Bottom:
+      return [x1, y1 + calculateControlOffset(y2 - y1, c)];
+  }
 }

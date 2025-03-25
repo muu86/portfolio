@@ -7,12 +7,11 @@ import { Comment } from "@/components/highlighting/comment";
 import { Line } from "@/components/highlighting/layout/line";
 import { randomUUID as id } from "node:crypto";
 import { Brace } from "@/components/highlighting/brace";
-import { CollapsibleContainer } from "@/components/collapse/collapsible-container";
 
 export function Hero() {
   return (
-    <CollapsibleContainer>
-      <Block className="relative font-mono text-4xl font-semibold">
+    <main className="relative flex h-[80vh] items-center justify-center">
+      <Block className="relative max-w-4xl font-mono text-2xl font-semibold">
         {/*<Line*/}
         {/*  className="mb-16 text-xl"*/}
         {/*  tokens={[<Keyword name="import" key={id()} />, <Variable name="Developer" key={id()} />]}*/}
@@ -34,9 +33,7 @@ export function Hero() {
             tokens={[
               <Variable name="name" className="text-zinc-500" key={id()} />,
               <Assignment key={id()} className="text-zinc-500" />,
-              <String className="text-5xl" key={id()}>
-                김민제
-              </String>,
+              <String key={id()}>김민제</String>,
             ]}
           />
           <Line
@@ -44,14 +41,15 @@ export function Hero() {
             tokens={[
               <Variable name="note" className="text-zinc-500" key={id()} />,
               <Assignment key={id()} className="text-zinc-500" />,
-              <String className="text-5xl" key={id()}>
-                엠제이라고 합니다.
+              <String className="text-wrap" key={id()}>
+                사람들에게 좋은 서비스를 제공하는 것을 고민합니다. 완성된 서비스를 개발하는 것을 목표로 백엔드, 인프라,
+                프론트를 가리지 않고 필요하다면 학습하고 적용합니다.
               </String>,
             ]}
           />
         </Block>
         <Line tokens={[<Brace type=")" key={id()} />]} />
       </Block>
-    </CollapsibleContainer>
+    </main>
   );
 }

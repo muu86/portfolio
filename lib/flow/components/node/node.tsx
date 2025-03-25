@@ -2,14 +2,14 @@
 
 import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
 import { PropsWithChildren, useEffect } from "react";
-import { Position } from "../../common/types";
-import { useNode } from "@/lib/flow/components/node/useNode";
-import { useAddEdges } from "@/lib/flow/components/node/useAddEdges";
+import { EdgeType, Position } from "@/lib/flow/common/types";
+import { useAddEdges } from "@/lib/flow/components/node/use-add-edges";
+import { useNode } from "@/lib/flow/components/node/use-node";
 
 export type NodeEdge = {
   id: string;
   position?: Position;
-  type?: string;
+  type?: EdgeType;
 };
 
 type NodeProps = {

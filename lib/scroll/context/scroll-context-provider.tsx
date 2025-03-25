@@ -2,32 +2,28 @@
 
 import { createContext, PropsWithChildren, useContext, useRef } from "react";
 import { useStore } from "zustand";
-import { createScrollStore, ScrollStore } from "@/lib/scroll/store";
+import { createScrollStore, defaultInitState, ScrollStore } from "@/lib/scroll/store";
 
 export type ScrollStoreApi = ReturnType<typeof createScrollStore>;
 
-export const ScrollStoreContext = createContext<ScrollStoreApi | undefined>(
-  undefined,
-);
+export const ScrollStoreContext = createContext<ScrollStoreApi | undefined>(undefined);
 
 export type ScrollStoreProviderProps = {
   ids: string[];
+  edgeMap?: Record<string, { source: string; target: string }>;
 };
 
-export function ScrollStoreProvider({
-  ids,
-  children,
-}: PropsWithChildren<ScrollStoreProviderProps>) {
+export function ScrollStoreProvider({ ids, edgeMap, children }: PropsWithChildren<ScrollStoreProviderProps>) {
   const storeRef = useRef<ScrollStoreApi | null>(null);
   if (storeRef.current === null) {
-    storeRef.current = createScrollStore(ids);
+    storeRef.current = createScrollStore({
+      ...defaultInitState,
+      ids,
+      edgeMap: edgeMap ? new Map(Object.entries(edgeMap)) : null,
+    });
   }
 
-  return (
-    <ScrollStoreContext.Provider value={storeRef.current}>
-      {children}
-    </ScrollStoreContext.Provider>
-  );
+  return <ScrollStoreContext.Provider value={storeRef.current}>{children}</ScrollStoreContext.Provider>;
 }
 
 export const useScrollStore = <T,>(selector: (store: ScrollStore) => T): T => {

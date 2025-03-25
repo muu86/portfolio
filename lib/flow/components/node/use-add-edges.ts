@@ -25,7 +25,7 @@ export function useAddEdges({
         sourcePosition: position,
         targetId: edge.id,
         targetPosition: edge.position ?? Position.Left,
-        type: edge.type ?? "bezier",
+        type: edge.type,
       });
     }
   }, [id, position, edges, addEdge]);
