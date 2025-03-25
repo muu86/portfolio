@@ -1,7 +1,7 @@
 "use client";
 
 import { PropsWithChildren } from "react";
-import { useIntersectionObserver } from "@/lib/scroll/hooks/useIntersectionObserver";
+import { useIntersectionObserver } from "@/lib/scroll/hooks/use-intersection-observer";
 
 export type ScrollItemProps = {
   id: string;

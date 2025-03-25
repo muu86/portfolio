@@ -11,7 +11,6 @@ import { Title } from "@/components/project/title";
 import { readDocs } from "@/lib/utils";
 import { ScrollNav } from "@/lib/scroll/components/scroll-nav";
 import { ScrollContainer } from "@/lib/scroll/components/scroll-container";
-import { ScrollButton } from "@/lib/scroll/components/scroll-button";
 
 export async function Infra() {
   const data = await readDocs(infraDocs);
@@ -27,11 +26,9 @@ export async function Infra() {
         </Title>
         <div className="flex gap-2">
           <ScrollNav>
-            <ScrollButton href="#project" direction="up" />
             {data.map((d) => (
               <ScrollSelector key={d.id} id={d.id} title={d.title} />
             ))}
-            <ScrollButton href="#project-uniitech" direction="down" />
           </ScrollNav>
           <div className="mx-16 flex gap-4">
             <Left>

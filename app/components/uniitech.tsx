@@ -8,12 +8,10 @@ import { ScrollContainer } from "@/lib/scroll/components/scroll-container";
 export async function Uniitech() {
   const data = await readDocs(uniitechDocs);
   return (
-    <ScrollStoreProvider ids={[]}>
+    <ScrollStoreProvider ids={data.map((d) => d.id)}>
       <ScrollContainer>
         <Title>
-          <h2 id="project-uniitech" className="text-sm text-gray-500">
-            유니아이텍
-          </h2>
+          <h2 className="text-sm text-gray-500">유니아이텍</h2>
           <h3 className="text-xl font-bold">SI 프로젝트 수행</h3>
         </Title>
         <div className="flex w-full gap-8 px-16">

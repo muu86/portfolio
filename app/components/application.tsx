@@ -16,7 +16,6 @@ import { ScrollNav } from "@/lib/scroll/components/scroll-nav";
 import { HexAdaptor } from "@/components/architecture/hex-adaptor";
 import { FlowContainer } from "@/lib/flow/components/container/flow-container";
 import { ScrollContainer } from "@/lib/scroll/components/scroll-container";
-import { ScrollButton } from "@/lib/scroll/components/scroll-button";
 
 const edgeMap: Record<string, { source: string; target: string }> = {
   "application-nestjs": {
@@ -62,11 +61,9 @@ export async function Application() {
         </Title>
         <div className="flex gap-8">
           <ScrollNav>
-            <ScrollButton href="#career" direction="up" />
             {data.map((d) => (
               <ScrollSelector key={d.id} id={d.id} title={d.title} />
             ))}
-            <ScrollButton href="#project-infra" direction="down" />
           </ScrollNav>
           <div className="mr-16 flex">
             <Left>

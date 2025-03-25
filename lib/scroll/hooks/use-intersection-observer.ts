@@ -40,7 +40,7 @@ export function useIntersectionObserver() {
       },
       {
         root: null,
-        rootMargin: "-20% 0% -20% 0%",
+        rootMargin: "-20% 0% -50% 0%",
       },
     );
 
@@ -49,7 +49,7 @@ export function useIntersectionObserver() {
     return () => {
       observer.disconnect();
     };
-  });
+  }, [edgeMap, edges, setSelectedEdgeIndex, setSelectedId]);
 
   return ref;
 }

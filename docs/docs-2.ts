@@ -25,12 +25,6 @@ export type DocProjectType = {
 
 export type ArchitectureProjectType = DocProjectType & {
   id: string;
-  edges?: ArchitectureEdgeType[];
-};
-
-export type ArchitectureEdgeType = {
-  source: string;
-  target: string;
 };
 
 export type ParsedDocProjectType = {
@@ -133,7 +127,7 @@ async createRecord(
 
 export const infraDocs: ArchitectureProjectType[] = [
   {
-    id: "terraform",
+    id: "infra-terraform",
     title: "Terraform 도입",
     doc: `## Terraform 도입 
 - **명확한 인프라 정의**: 인프라 구성을 코드로 명시하여, 팀원 누구나 전체 아키텍처를 한눈에 파악
@@ -143,7 +137,7 @@ export const infraDocs: ArchitectureProjectType[] = [
   },
 
   {
-    id: "eks",
+    id: "infra-eks",
     title: "AWS EKS 도입",
     doc: `## AWS EKS 도입
     
@@ -159,7 +153,7 @@ export const infraDocs: ArchitectureProjectType[] = [
   },
 
   {
-    id: "karpenter",
+    id: "infra-karpenter",
     title: "Karpenter로 오토스케일링 해결",
     doc: `### Karpenter로 오토스케일링 해결
     
@@ -195,7 +189,6 @@ export const applicationDocs: ArchitectureProjectType[] = [
   {
     id: "application-nestjs",
     title: "NestJS 전환",
-    edges: [],
     doc: `## NestJS 전환
     
 **Express.js** 애플리케이션을 **NestJS**로 전환.

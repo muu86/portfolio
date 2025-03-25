@@ -13,10 +13,7 @@ export type FlowState = {
   width: number;
   height: number;
 
-  resizeObserver: ResizeObserver | null;
   mutationObserver: MutationObserver | null;
-
-  isScrolling: boolean;
 
   selectedEdgeIndex: number;
 };
@@ -29,10 +26,7 @@ export type FlowAction = {
 
   updateContainerRect: (rect: Rect) => void;
 
-  setResizeObserver: (resizeObserver: ResizeObserver | null) => void;
   setMutationObserver: (mutationObserver: MutationObserver | null) => void;
-
-  setIsScrolling: (isScrolling: boolean) => void;
 
   setSelectedEdgeIndex: (index: number) => void;
 };
@@ -50,10 +44,7 @@ export const defaultInitState: FlowState = {
   width: 500,
   height: 500,
 
-  resizeObserver: null,
   mutationObserver: null,
-
-  isScrolling: false,
 
   selectedEdgeIndex: -1,
 };
@@ -94,16 +85,8 @@ export function createFlowStore(initState: FlowState = defaultInitState) {
           set({ top, right, bottom, left, width, height });
         },
 
-        setResizeObserver: (resizeObserver: ResizeObserver | null) => {
-          set({ resizeObserver });
-        },
-
         setMutationObserver: (mutationObserver: MutationObserver | null) => {
           set({ mutationObserver });
-        },
-
-        setIsScrolling: (isScrolling: boolean) => {
-          set({ isScrolling });
         },
 
         setSelectedEdgeIndex: (index: number) => {

@@ -10,7 +10,7 @@ export function useScrollEvent() {
 
       setTimeout(() => {
         setIsScrolling(false);
-      }, 100);
+      }, 200);
     });
   }, [setIsScrolling]);
 }
