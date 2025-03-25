@@ -11,7 +11,7 @@ import { Right } from "@/lib/scroll/components/right";
 import { ScrollStoreProvider } from "@/lib/scroll/context/scroll-context-provider";
 import { Title } from "@/components/project/title";
 import { ScrollSelector } from "@/lib/scroll/components/scroll-selector";
-import { readDocs } from "@/lib/mdx";
+import { readDocs } from "@/lib/utils";
 import { ScrollNav } from "@/lib/scroll/components/scroll-nav";
 import { HexAdaptor } from "@/components/architecture/hex-adaptor";
 import { FlowContainer } from "@/lib/flow/components/container/flow-container";

@@ -2,7 +2,7 @@ import { Title } from "@/components/project/title";
 import { Left } from "@/lib/scroll/components/left";
 import { ScrollStoreProvider } from "@/lib/scroll/context/scroll-context-provider";
 import { uniitechDocs } from "@/docs/docs-2";
-import { readDocs } from "@/lib/mdx";
+import { readDocs } from "@/lib/utils";
 import { ScrollContainer } from "@/lib/scroll/components/scroll-container";
 
 export async function Uniitech() {

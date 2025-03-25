@@ -31,19 +31,6 @@ export function useNode(id: string, canStick: boolean) {
     };
 
     updateNode();
-
-    if (canStick) {
-      // window.addEventListener("scroll", updateNode);
-      // requestAnimationFrame(updateNode);
-    }
-    // window.addEventListener("resize", updateNode);
-
-    return () => {
-      if (canStick) {
-        // window.removeEventListener("scroll", updateNode);
-      }
-      // window.addEventListener("resize", updateNode);
-    };
   }, [id, ct, cl, cr, cb, canStick, updateNodes]);
 
   return ref;

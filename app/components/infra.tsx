@@ -8,7 +8,7 @@ import { Left } from "@/lib/scroll/components/left";
 import { Right } from "@/lib/scroll/components/right";
 import { ScrollSelector } from "@/lib/scroll/components/scroll-selector";
 import { Title } from "@/components/project/title";
-import { readDocs } from "@/lib/mdx";
+import { readDocs } from "@/lib/utils";
 import { ScrollNav } from "@/lib/scroll/components/scroll-nav";
 import { ScrollContainer } from "@/lib/scroll/components/scroll-container";
 import { ScrollButton } from "@/lib/scroll/components/scroll-button";

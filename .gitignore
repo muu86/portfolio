@@ -41,3 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 app/docs/
+lib/mdx.ts
+components/toc.tsx

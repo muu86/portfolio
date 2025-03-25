@@ -259,8 +259,6 @@ export function getRelativeRect({
   sourcePosition,
   target,
   targetPosition,
-  cx,
-  cy,
 }: {
   source: Node;
   sourcePosition: Position;

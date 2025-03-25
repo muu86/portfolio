@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
 import { EdgeType, Position } from "../../common/types";
 import { calcBezier, getRelativeRect, getSmoothStepPath } from "@/lib/flow/utils/calc-edges";

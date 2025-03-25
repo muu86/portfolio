@@ -39,7 +39,7 @@ export function Node({
 
     resizeObserver?.observe(ref.current);
     mutationObserver?.observe(ref.current, { attributes: true });
-  }, [resizeObserver, mutationObserver]);
+  }, [ref, resizeObserver, mutationObserver]);
 
   return (
     <div data-node-id={id} ref={ref} className={className}>
