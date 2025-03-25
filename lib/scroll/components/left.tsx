@@ -8,5 +8,5 @@ type Props = {
 };
 
 export function Left({ className, children }: PropsWithChildren<Props>) {
-  return <div className={cn("sticky top-0 h-svh grow", className)}>{children}</div>;
+  return <div className={cn("sticky top-0 h-svh grow pt-[80px]", className)}>{children}</div>;
 }

@@ -40,7 +40,7 @@ export function useIntersectionObserver() {
       },
       {
         root: null,
-        rootMargin: "-20% 0% -50% 0%",
+        rootMargin: "-10% 0% -20% 0%",
       },
     );
 

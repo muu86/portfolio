@@ -31,7 +31,7 @@ export function Container({
   return (
     <div
       className={cn(
-        "relative flex min-h-48 w-full max-w-4xl flex-col overflow-hidden rounded-sm ring transition duration-100",
+        "relative flex w-full max-w-4xl flex-col overflow-hidden rounded-sm ring transition duration-100",
         {
           ...(isSelected
             ? {

@@ -13,7 +13,7 @@ export function Title({ className, children }: PropsWithChildren<TitleProps>) {
         className,
       )}
     >
-      <div className="mx-auto flex w-full max-w-4xl flex-col py-8">{children}</div>
+      <div className="mx-auto flex h-[80px] w-full max-w-4xl flex-col justify-center">{children}</div>
     </div>
   );
 }
