@@ -1,6 +1,6 @@
 import { Title } from "@/lib/scroll/components/title";
 import { ScrollStoreProvider } from "@/lib/scroll/context/scroll-context-provider";
-import { uniitechDocs } from "@/docs/docs-2";
+import { uniitechDocs } from "@/docs/docs";
 import { cn, readDocs } from "@/lib/utils";
 import { ScrollContainer } from "@/lib/scroll/components/scroll-container";
 import { ScrollInnerContainer } from "@/lib/scroll/components/scroll-inner-container";
@@ -35,7 +35,6 @@ export async function Uniitech() {
           </h3>
         </Title>
         <ScrollInnerContainer>
-          {/*<Left>*/}
           <div className="mt-[160px] flex min-h-[calc(100svh-80px)] w-full flex-col justify-around">
             {data.map((d) => (
               <div className="flex flex-col items-start justify-center" key={d.id}>
@@ -43,7 +42,6 @@ export async function Uniitech() {
               </div>
             ))}
           </div>
-          {/*</Left>*/}
         </ScrollInnerContainer>
       </ScrollContainer>
     </ScrollStoreProvider>

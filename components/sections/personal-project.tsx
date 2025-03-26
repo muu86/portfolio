@@ -13,7 +13,7 @@ export function PersonalProject() {
           <Link href="https://github.com/muu86/portfolio" target="_blank" className="inline-block font-bold underline">
             https://github.com/muu86/portfolio
           </Link>
-          <p className="mt-4 text-sm text-gray-500">Next.js, Vercel, Tailwind, Shadcn, MDX</p>
+          <p className="mt-4 text-sm text-gray-500">Next.js, Vercel, Zustand, Tailwind, Shadcn, MDX</p>
         </div>
 
         <div>

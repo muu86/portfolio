@@ -1,6 +1,6 @@
-import { Application } from "@/app/components/application";
-import { Infra } from "@/app/components/infra";
-import { Uniitech } from "@/app/components/uniitech";
+import { Application } from "@/components/sections/application";
+import { Infra } from "@/components/sections/infra";
+import { Uniitech } from "@/components/sections/uniitech";
 
 export function Project() {
   return (

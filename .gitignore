@@ -40,6 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-app/docs/
-lib/mdx.ts
-components/toc.tsx
+/app/docs/
+/lib/mdx.ts
+/components/toc.tsx
+/hooks/

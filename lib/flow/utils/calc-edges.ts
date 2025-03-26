@@ -1,6 +1,5 @@
 import { Position, type Coordinates, Node } from "@/lib/flow/common/types";
 
-// this is used for straight edges and simple smoothstep edges (LTR, RTL, BTT, TTB)
 export function getEdgeCenter({
   sourceX,
   sourceY,
@@ -58,10 +57,6 @@ const getDirection = ({
 
 const distance = (a: Coordinates, b: Coordinates) => Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
 
-/*
- * ith this function we try to mimic a orthogonal edge routing behaviour
- * It's not as good as a real orthogonal edge routing but it's faster and good enough as a default for step and smooth step edges
- */
 function getPoints({
   source,
   sourcePosition = Position.Bottom,
