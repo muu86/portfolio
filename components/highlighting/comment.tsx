@@ -13,7 +13,6 @@ export function Comment({ className, children }: Props) {
         {`// `}
         {children}
       </span>
-      <br />
     </>
   );
 }

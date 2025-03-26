@@ -11,8 +11,17 @@ import { Brace } from "@/components/highlighting/brace";
 export function Hero() {
   return (
     <main className="relative flex h-[80vh] items-center justify-center">
-      <Block className="relative max-w-7xl font-mono text-4xl font-semibold">
-        <Line tokens={[<Comment key={id()}>println(&ldquo;안녕하세요!&rdquo;)</Comment>]} />
+      <Block className="relative max-w-5xl font-mono text-4xl font-semibold">
+        {/*<Line*/}
+        {/*  tokens={[*/}
+        {/*    <>*/}
+        {/*      <Comment key={id()}>println(</Comment>*/}
+        {/*      <String className="font-sans" key={id()}>*/}
+        {/*        안녕하세요! 김민제입니다.*/}
+        {/*      </String>*/}
+        {/*    </>,*/}
+        {/*  ]}*/}
+        {/*/>*/}
         <Line
           tokens={[
             <Keyword name="val" key={id()} className="text-gray-500" />,
@@ -23,20 +32,22 @@ export function Hero() {
           ]}
         />
         <Block level={1}>
-          <Line
-            className="mt-4"
-            tokens={[
-              <Variable name="name" className="text-gray-500" key={id()} />,
-              <Assignment key={id()} className="text-gray-500" />,
-              <String key={id()}>김민제</String>,
-            ]}
-          />
+          {/*<Line*/}
+          {/*  className="mt-4"*/}
+          {/*  tokens={[*/}
+          {/*    <Variable name="name" className="text-gray-500" key={id()} />,*/}
+          {/*    <Assignment key={id()} className="text-gray-500" />,*/}
+          {/*    <String className="font-sans" key={id()}>*/}
+          {/*      김민제*/}
+          {/*    </String>,*/}
+          {/*  ]}*/}
+          {/*/>*/}
           <Line
             className="mt-8 whitespace-nowrap"
             tokens={[
               <Variable name="note" className="text-gray-500" key={id()} />,
               <Assignment key={id()} className="text-gray-500" />,
-              <String className="text-pretty" key={id()}>
+              <String className="font-sans text-pretty" key={id()}>
                 좋은 서비스를 만드는 것을 고민합니다. 백엔드, 인프라, 프론트를 가리지 않고 필요하면 학습하고 적용합니다.
               </String>,
             ]}
