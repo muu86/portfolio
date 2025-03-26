@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${notoSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="flex min-h-svh w-full flex-col">{children}</div>
+        <div className="flex min-h-svh w-full flex-col px-4">{children}</div>
       </body>
     </html>
   );

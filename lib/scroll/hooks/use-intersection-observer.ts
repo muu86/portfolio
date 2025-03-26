@@ -1,13 +1,14 @@
 import { useEffect, useRef } from "react";
 import { useScrollStore } from "@/lib/scroll/context/scroll-context-provider";
 import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
+import { Edge } from "@/lib/flow/common/types";
 
 export function useIntersectionObserver() {
   const setSelectedId = useScrollStore((s) => s.setSelectedId);
 
   const edgeMap = useScrollStore((s) => s.edgeMap);
   const edges = useFlowStore((s) => s.edges);
-  const setSelectedEdgeIndex = useFlowStore((s) => s.setSelectedEdgeIndex);
+  const updateSelectedEdges = useFlowStore((s) => s.updateSelectedEdges);
 
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -28,12 +29,19 @@ export function useIntersectionObserver() {
 
             setSelectedId(scrollId);
 
-            const edge = scrollId ? edgeMap?.get(scrollId) : undefined;
-            if (!edge) {
-              setSelectedEdgeIndex(-1);
+            const mappedEdges = scrollId ? edgeMap?.get(scrollId) : undefined;
+            if (!mappedEdges) {
+              updateSelectedEdges([]);
             } else {
-              const { source, target } = edge;
-              setSelectedEdgeIndex(edges.findIndex((edge) => edge.sourceId === source && edge.targetId === target));
+              updateSelectedEdges(
+                mappedEdges.reduce<Edge[]>((acc, curr) => {
+                  const found = edges.find((e) => e.sourceId === curr.source && e.targetId === curr.target);
+                  if (found) {
+                    acc.push(found);
+                  }
+                  return acc;
+                }, []),
+              );
             }
           }
         });
@@ -49,7 +57,7 @@ export function useIntersectionObserver() {
     return () => {
       observer.disconnect();
     };
-  }, [edgeMap, edges, setSelectedEdgeIndex, setSelectedId]);
+  }, [edgeMap, edges, setSelectedId, updateSelectedEdges]);
 
   return ref;
 }

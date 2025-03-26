@@ -40,6 +40,7 @@ export type Edge = {
   sourcePosition: Position;
   targetPosition: Position;
   type: EdgeType;
+  hidden: boolean;
 };
 
 export type EdgeType = "bezier" | "smooth-step";

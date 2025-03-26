@@ -10,6 +10,7 @@ export type NodeEdge = {
   id: string;
   position?: Position;
   type?: EdgeType;
+  hidden?: boolean;
 };
 
 type NodeProps = {

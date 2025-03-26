@@ -11,6 +11,7 @@ type EdgeProps = {
   sourcePosition: Position;
   targetPosition: Position;
   type: EdgeType;
+  hidden: boolean;
 };
 
 export function Edge({
@@ -19,22 +20,14 @@ export function Edge({
   sourcePosition = Position.Right,
   targetPosition = Position.Left,
   type = "bezier",
+  hidden,
 }: EdgeProps) {
   const nodes = useFlowStore((s) => s.nodes);
 
   const [path, setPath] = useState("");
 
-  const [isSelected, setIsSelected] = useState<boolean>(false);
-  const edges = useFlowStore((s) => s.edges);
-  const selectedEdgeIndex = useFlowStore((s) => s.selectedEdgeIndex);
-  useEffect(() => {
-    if (selectedEdgeIndex < 0 || selectedEdgeIndex >= edges.length) {
-      setIsSelected(false);
-    } else {
-      const edge = edges[selectedEdgeIndex];
-      setIsSelected(edge.sourceId === sourceId && edge.targetId === targetId);
-    }
-  }, [sourceId, targetId, edges, selectedEdgeIndex]);
+  const selectedEdges = useFlowStore((s) => s.selectedEdges);
+  const isSelected = selectedEdges.some((e) => e.sourceId === sourceId && e.targetId === targetId);
 
   useEffect(() => {
     const source = nodes.get(sourceId);
@@ -72,7 +65,13 @@ export function Edge({
 
   return (
     <g data-id={`e-${sourceId}-${targetId}`}>
-      <path d={path} strokeWidth={isSelected ? 2 : 1} stroke="black" fill="none" strokeDasharray="4px, 2px">
+      <path
+        d={path}
+        strokeWidth={isSelected ? 2 : hidden ? 0 : 1}
+        stroke="black"
+        fill="none"
+        strokeDasharray="4px, 2px"
+      >
         {isSelected && <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2s" repeatCount="indefinite" />}
       </path>
       {/*<path className="z-10" pointerEvents="stroke" d={path} strokeWidth={10} stroke="transparent" fill="none" />*/}

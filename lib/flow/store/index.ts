@@ -15,6 +15,7 @@ export type FlowState = {
 
   mutationObserver: MutationObserver | null;
 
+  selectedEdges: Edge[];
   selectedEdgeIndex: number;
 };
 
@@ -29,6 +30,8 @@ export type FlowAction = {
   setMutationObserver: (mutationObserver: MutationObserver | null) => void;
 
   setSelectedEdgeIndex: (index: number) => void;
+
+  updateSelectedEdges: (edges: Edge[]) => void;
 };
 
 export type FlowStore = FlowState & FlowAction;
@@ -46,6 +49,7 @@ export const defaultInitState: FlowState = {
 
   mutationObserver: null,
 
+  selectedEdges: [],
   selectedEdgeIndex: -1,
 };
 
@@ -87,6 +91,10 @@ export function createFlowStore(initState: FlowState = defaultInitState) {
 
         setMutationObserver: (mutationObserver: MutationObserver | null) => {
           set({ mutationObserver });
+        },
+
+        updateSelectedEdges: (edges: Edge[]) => {
+          set({ selectedEdges: edges });
         },
 
         setSelectedEdgeIndex: (index: number) => {

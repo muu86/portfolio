@@ -37,7 +37,7 @@ export const myComponents = {
     <h6 className={cn("mt-8 scroll-m-20 text-base font-semibold tracking-tight", className)} {...props} />
   ),
   a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-    <a className={cn("font-medium underline underline-offset-4", className)} {...props} />
+    <a target="_blank" className={cn("font-medium underline underline-offset-4", className)} {...props} />
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p className={cn("leading-7 [&:not(:first-child)]:mt-6", className)} {...props} />

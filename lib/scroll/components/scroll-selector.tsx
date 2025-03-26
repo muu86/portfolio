@@ -4,6 +4,7 @@ import { useScrollStore } from "@/lib/scroll/context/scroll-context-provider";
 import { MouseEventHandler, PropsWithChildren } from "react";
 import { cn } from "@/lib/utils";
 import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
+import { Edge } from "@/lib/flow/common/types";
 
 type ScrollSelectorProps = {
   id: string;
@@ -17,17 +18,24 @@ export function ScrollSelector({ id, title }: PropsWithChildren<ScrollSelectorPr
 
   const edgeMap = useScrollStore((s) => s.edgeMap);
   const edges = useFlowStore((s) => s.edges);
-  const setSelectedEdgeIndex = useFlowStore((s) => s.setSelectedEdgeIndex);
+  const setSelectedEdges = useFlowStore((s) => s.updateSelectedEdges);
 
   const onClickHandler: MouseEventHandler<HTMLDivElement> = () => {
     setSelectedId(id);
 
-    const edge = edgeMap?.get(id);
-    if (!edge) {
-      setSelectedEdgeIndex(-1);
+    const selectedEdges = edgeMap?.get(id);
+    if (!selectedEdges) {
+      setSelectedEdges([]);
     } else {
-      const { source, target } = edge;
-      setSelectedEdgeIndex(edges.findIndex((edge) => edge.sourceId === source && edge.targetId === target));
+      setSelectedEdges(
+        selectedEdges.reduce<Edge[]>((acc, curr) => {
+          const found = edges.find((e) => e.sourceId === curr.source && e.targetId === curr.target);
+          if (found) {
+            acc.push(found);
+          }
+          return acc;
+        }, []),
+      );
     }
   };
 

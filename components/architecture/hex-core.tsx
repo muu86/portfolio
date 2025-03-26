@@ -6,9 +6,5 @@ type CoreProps = {
 };
 
 export function HexCore({ className, children }: PropsWithChildren<CoreProps>) {
-  return (
-    <div className={cn("clip-hexagon relative flex aspect-square items-center justify-center p-4", className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn("clip-hexagon relative flex items-center justify-center p-4", className)}>{children}</div>;
 }

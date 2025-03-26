@@ -10,7 +10,7 @@ export const ScrollStoreContext = createContext<ScrollStoreApi | undefined>(unde
 
 export type ScrollStoreProviderProps = {
   ids: string[];
-  edgeMap?: Record<string, { source: string; target: string }>;
+  edgeMap?: Record<string, { source: string; target: string }[]>;
 };
 
 export function ScrollStoreProvider({ ids, edgeMap, children }: PropsWithChildren<ScrollStoreProviderProps>) {

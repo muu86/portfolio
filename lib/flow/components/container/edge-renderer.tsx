@@ -16,6 +16,7 @@ export function EdgeRenderer() {
           targetId={edge.targetId}
           targetPosition={edge.targetPosition}
           type={edge.type}
+          hidden={edge.hidden}
         />
       ))}
     </svg>

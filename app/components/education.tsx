@@ -2,7 +2,7 @@ import { Separator } from "@/components/ui/separator";
 
 export function Education() {
   return (
-    <section className="mx-auto mt-32 mb-32 w-full max-w-4xl">
+    <section className="mx-auto mt-32 mb-32 w-full max-w-7xl">
       <div className="border-t-2 border-t-black py-4">
         <h1 className="text-xl font-bold">교육</h1>
       </div>

@@ -6,7 +6,7 @@ export type ScrollState = {
   selectedIndex: number;
   selectedId: string | null;
 
-  edgeMap: Map<string, { source: string; target: string }> | null;
+  edgeMap: Map<string, { source: string; target: string }[]> | null;
 
   isScrolling: boolean;
 };

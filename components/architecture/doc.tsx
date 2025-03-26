@@ -20,10 +20,11 @@ export function ArchitectureDoc({ id, children }: PropsWithChildren<Architecture
     if (id !== selectedId) return;
 
     ref.current.scrollIntoView({ behavior: isScrolling ? "smooth" : "instant", block: "nearest", inline: "center" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, selectedId]);
 
   return (
-    <article ref={ref} className={cn("flex h-svh w-full flex-col justify-center")}>
+    <article ref={ref} className={cn("flex h-svh w-full flex-col justify-center pt-[80px]")}>
       {children}
     </article>
   );
