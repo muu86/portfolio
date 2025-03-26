@@ -23,8 +23,8 @@ export async function Infra() {
       <ScrollStoreProvider ids={data.map((d) => d.id)}>
         <ScrollContainer>
           <Title>
-            <h2 className="text-sm text-gray-500">디지털 뉴트리션</h2>
-            <h3 className="text-xl font-bold">AWS 인프라 구축</h3>
+            <h2 className="text-xl text-gray-400">디지털 뉴트리션</h2>
+            <h3 className="text-2xl font-bold">AWS 인프라 구축</h3>
           </Title>
           <ScrollNav>
             {data.map((d) => (

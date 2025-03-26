@@ -26,8 +26,8 @@ export async function Uniitech() {
     <ScrollStoreProvider ids={data.map((d) => d.id)}>
       <ScrollContainer>
         <Title>
-          <h2 className="text-sm text-gray-500">유니아이텍</h2>
-          <h3 className="text-xl font-bold">
+          <h2 className="text-xl text-gray-400">유니아이텍</h2>
+          <h3 className="text-2xl font-bold">
             <Link className="cursor-pointer underline" href="https://www.hnsmall.com" target="_blank">
               홈앤쇼핑
             </Link>{" "}

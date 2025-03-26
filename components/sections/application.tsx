@@ -113,8 +113,8 @@ export async function Application() {
       <ScrollStoreProvider ids={data.map((d) => d.id)} edgeMap={edgeMap}>
         <ScrollContainer>
           <Title>
-            <h2 className="text-sm text-gray-500">디지털 뉴트리션</h2>
-            <h3 className="text-xl font-bold">
+            <h2 className="text-xl text-gray-500">디지털 뉴트리션</h2>
+            <h3 className="text-2xl font-bold">
               <Link
                 className="cursor-pointer underline"
                 href="https://apps.apple.com/kr/app/%EC%82%AC%EC%9A%B4%EB%93%9C%ED%95%84-%EC%88%98%EB%A9%B4-%ED%9C%B4%EC%8B%9D-%EC%A7%91%EC%A4%91%EB%A0%A5/id6450494947"

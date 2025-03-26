@@ -10,11 +10,11 @@ export function Title({ className, children }: PropsWithChildren<TitleProps>) {
     <div className="absolute h-11/12 w-full">
       <div
         className={cn(
-          "bg-background/100 supports-[backdrop-filter]:bg-background/80 sticky top-0 z-10 flex h-[80px] w-full backdrop-blur",
+          "bg-background/100 supports-[backdrop-filter]:bg-background/80 sticky top-0 flex h-[80px] w-full backdrop-blur",
           className,
         )}
       >
-        <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-center">{children}</div>
+        <div className="mx-auto flex w-full max-w-5xl flex-col justify-center">{children}</div>
       </div>
     </div>
   );
