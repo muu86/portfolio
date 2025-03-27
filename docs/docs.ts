@@ -148,6 +148,31 @@ export const infraDocs: ArchitectureProjectType[] = [
   },
 
   {
+    id: "infra-eks-environment",
+    title: "하나의 Kubernetes 클러스터 안에서 여러 환경 배포",
+    doc: `## 하나의 Kubernetes 클러스터 안에서 여러 환경 배포
+
+- 여러 기업과의 협업 과정에서, 운영 환경에 배포하기 전 각 개발 중인 기능(feature)에 대해 **별도의 API 엔드포인트를
+  제공**할 필요가 있었습니다.
+- Kubernetes와 Terraform의 **모듈** 기능을 활용하여 동일한 AWS 리소스를 여러 환경에 배포하고, 서로 격리된 환경에서
+  테스트할 수 있도록 설정하였습니다. 이를 통해 **비용을 최적화**하면서 **각 환경의 독립성**을 확보했습니다.
+`,
+  },
+
+  {
+    id: "infra-karpenter",
+    title: "Karpenter를 통한 Node AutoScaling",
+    doc: `## Karpenter를 통한 Node AutoScaling
+    
+우리 서비스는 부하가 크지 않으나 타 업체(**비타포트**, **DB생명**, **LG XBoom**)와 협업으로 **특정 기간** 동안 많은 사용자의 요청을 처리해야했습니다. 
+
+- AWS가 제공하는 [**Karpenter**](https://karpenter.sh/) 솔루션
+- Cloudwatch 기반으로 동작하는 기존 AWS Autoscailing Group에 비해 클러스터 내에서 동작하는 Karpenter의 Node 프로비저닝 **속도**가 더 빠르므로 선택
+- HPA(Horozontal Pod Autoscaling)가 리소스 부족을 감지하고 **2분 ~ 3분** 내외로 Node(EC2)를 프로비저닝하고 **5분** 내 Pod를 구동
+- Node.js 부하 테스트 프레임워크인 [**Artillery**](https://www.artillery.io/)로 오토스케일링 테스트`,
+  },
+
+  {
     id: "infra-alb",
     title: "AWS Load Balancer Controller",
     doc: `## AWS Load Balancer Controller
@@ -156,19 +181,6 @@ export const infraDocs: ArchitectureProjectType[] = [
 
 - **WAF(AWS 관리형 방화벽)**: 퍼블릭에 노출되는 로드 밸런서 보안 강화
 `,
-  },
-
-  {
-    id: "infra-karpenter",
-    title: "Karpenter로 오토스케일링 해결",
-    doc: `### Karpenter로 오토스케일링 해결
-    
-우리 서비스는 부하가 크지 않으나 타 업체(**비타포트**, **DB생명**, **LG XBoom**)와 협업으로 **특정 기간** 동안 많은 사용자의 요청을 처리해야했습니다. 
-
-- AWS가 제공하는 [**Karpenter**](https://karpenter.sh/) 솔루션
-- Cloudwatch 기반으로 동작하는 기존 AWS Autoscailing Group에 비해 클러스터 내에서 동작하는 Karpenter의 Node 프로비저닝 **속도**가 더 빠르므로 선택
-- HPA(Horozontal Pod Autoscaling)가 리소스 부족을 감지하고 **2분 ~ 3분** 내외로 Node(EC2)를 프로비저닝하고 **5분** 내 Pod를 구동
-- Node.js 부하 테스트 프레임워크인 [**Artillery**](https://www.artillery.io/)로 오토스케일링 테스트`,
   },
 
   {

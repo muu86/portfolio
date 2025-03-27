@@ -6,7 +6,7 @@ import { Icon } from "./icon";
 import { useScrollStore } from "@/lib/scroll/context/scroll-context-provider";
 
 export type ContainerProps = {
-  id?: string;
+  id?: string | string[];
   title?: string;
   source?: string;
   iconWidth?: number;
@@ -26,7 +26,15 @@ export function Container({
   children,
 }: PropsWithChildren<ContainerProps>) {
   const selectedId = useScrollStore((s) => s.selectedId);
-  const isSelected = id && id === selectedId;
+
+  let isSelected = false;
+  if (!id) {
+    isSelected = false;
+  } else if (Array.isArray(id)) {
+    isSelected = selectedId !== null && id.includes(selectedId);
+  } else {
+    isSelected = id === selectedId;
+  }
 
   return (
     <div

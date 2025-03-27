@@ -42,7 +42,7 @@ export function ScrollSelector({ id, title }: PropsWithChildren<ScrollSelectorPr
   return (
     <div
       onClick={onClickHandler}
-      className={cn("cursor-pointer p-2 text-sm text-nowrap text-gray-400 hover:text-black", {
+      className={cn("cursor-pointer p-2 text-sm text-wrap text-gray-400 hover:text-black", {
         "text-black": selectedId === id,
       })}
     >

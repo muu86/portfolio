@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { useScrollStore } from "@/lib/scroll/context/scroll-context-provider";
 
 export type IconProps = {
-  id?: string;
+  id?: string | string[];
   name?: string;
   source: string;
   width?: number;
@@ -18,11 +18,20 @@ export type IconProps = {
 export function Icon({ id, name, source, width = 32, height = 32, color, className }: PropsWithChildren<IconProps>) {
   const selectedId = useScrollStore((s) => s.selectedId);
 
+  let isSelected = false;
+  if (!id) {
+    isSelected = false;
+  } else if (Array.isArray(id)) {
+    isSelected = selectedId !== null && id.includes(selectedId);
+  } else {
+    isSelected = id === selectedId;
+  }
+
   if (name) {
     return (
       <div
         className={cn("flex w-12 flex-col items-center justify-center gap-2 rounded-sm p-2", {
-          "ring-4 ring-offset-4": id === selectedId,
+          "ring-4 ring-offset-4": isSelected,
           "ring-aws-charcoal": color === "charcoal",
           "ring-aws-purple": color === "purple",
           "ring-aws-olive": color === "olive",
@@ -31,7 +40,7 @@ export function Icon({ id, name, source, width = 32, height = 32, color, classNa
         })}
       >
         <Image
-          className={cn(className, { "scale-120": id === selectedId })}
+          className={cn(className, { "scale-120": isSelected })}
           src={source}
           alt={source}
           width={width}
@@ -45,7 +54,7 @@ export function Icon({ id, name, source, width = 32, height = 32, color, classNa
 
   return (
     <Image
-      className={cn(className, { "scale-110": id === selectedId })}
+      className={cn(className, { "scale-110": isSelected })}
       src={source}
       alt={source}
       width={width}
