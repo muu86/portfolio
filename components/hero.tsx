@@ -3,7 +3,6 @@ import { Keyword } from "@/components/highlighting/keyword";
 import { String } from "@/components/highlighting/string";
 import { Variable } from "@/components/highlighting/variable";
 import { Assignment } from "@/components/highlighting/assignment";
-import { Comment } from "@/components/highlighting/comment";
 import { Line } from "@/components/highlighting/layout/line";
 import { randomUUID as id } from "node:crypto";
 import { Brace } from "@/components/highlighting/brace";
