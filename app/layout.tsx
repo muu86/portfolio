@@ -6,6 +6,7 @@ import { allDigitalNutritionApplications, allDigitalNutritionInfras } from "cont
 import { ScrollStoreProvider } from "@/lib/scroll/context/scroll-context-provider";
 import { idToEdges } from "@/config/id-to-edges";
 import { ReactNode } from "react";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const notoSans = Noto_Sans_KR({
   variable: "--font-noto-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-KRQVMDKV" />
       <body className={`${notoSans.variable} ${geistMono.variable} antialiased`}>
         <ScrollStoreProvider ids={[...projectApplication, ...projectInfra]} idToEdges={idToEdges}>
           <div className="flex min-h-svh w-full flex-col px-4 font-sans">{children}</div>
