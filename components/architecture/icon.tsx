@@ -18,7 +18,7 @@ export type IconProps = {
 export function Icon({ id, name, source, width = 32, height = 32, color, className }: PropsWithChildren<IconProps>) {
   const selectedId = useScrollStore((s) => s.selectedId);
 
-  let isSelected = false;
+  let isSelected: boolean;
   if (!id) {
     isSelected = false;
   } else if (Array.isArray(id)) {

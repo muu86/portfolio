@@ -27,7 +27,7 @@ export function Container({
 }: PropsWithChildren<ContainerProps>) {
   const selectedId = useScrollStore((s) => s.selectedId);
 
-  let isSelected = false;
+  let isSelected: boolean;
   if (!id) {
     isSelected = false;
   } else if (Array.isArray(id)) {
