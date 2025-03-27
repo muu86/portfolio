@@ -1,5 +1,4 @@
 import { ScrollStoreProvider } from "@/lib/scroll/context/scroll-context-provider";
-import { infraDocs } from "@/docs/docs";
 import { Container } from "@/components/architecture/container";
 import { Icon } from "@/components/architecture/icon";
 import { ArchitectureDoc } from "@/components/architecture/doc";
@@ -8,19 +7,20 @@ import { Left } from "@/lib/scroll/components/left";
 import { Right } from "@/lib/scroll/components/right";
 import { ScrollSelector } from "@/lib/scroll/components/scroll-selector";
 import { Title } from "@/lib/scroll/components/title";
-import { readDocs } from "@/lib/utils";
 import { ScrollNav } from "@/lib/scroll/components/scroll-nav";
 import { ScrollContainer } from "@/lib/scroll/components/scroll-container";
 import { ScrollInnerContainer } from "@/lib/scroll/components/scroll-inner-container";
-import { myComponents } from "@/mdx-components";
 import { FlowStoreProvider } from "@/lib/flow/context/flow-context-provider";
+import { allDigitalNutritionInfras } from "content-collections";
+import { MDXContent } from "@content-collections/mdx/react";
+import { myComponents } from "@/mdx-components";
 
 export async function Infra() {
-  const data = await readDocs(infraDocs, myComponents);
+  const docs = allDigitalNutritionInfras.sort((a, b) => a.order - b.order);
 
   return (
     <FlowStoreProvider>
-      <ScrollStoreProvider ids={data.map((d) => d.id)}>
+      <ScrollStoreProvider ids={docs.map((doc) => doc.id)}>
         <ScrollContainer>
           <Title>
             <h2 className="text-xl text-gray-400">디지털 뉴트리션</h2>
@@ -30,8 +30,8 @@ export async function Infra() {
             <Left>
               <div className="flex h-full items-center justify-center gap-12">
                 <ScrollNav>
-                  {data.map((d) => (
-                    <ScrollSelector key={d.id} id={d.id} title={d.title} />
+                  {docs.map((doc) => (
+                    <ScrollSelector key={doc.id} id={doc.id} title={doc.title} />
                   ))}
                 </ScrollNav>
                 <div className="relative flex h-full w-full flex-col items-center justify-center px-4">
@@ -105,9 +105,11 @@ export async function Infra() {
             </Left>
 
             <Right>
-              {data.map((d) => (
-                <ScrollItem key={d.id} id={d.id}>
-                  <ArchitectureDoc id={d.id}>{d.doc}</ArchitectureDoc>
+              {docs.map((doc) => (
+                <ScrollItem key={doc.id} id={doc.id}>
+                  <ArchitectureDoc id={doc.id}>
+                    <MDXContent code={doc.mdx} components={myComponents} />
+                  </ArchitectureDoc>
                 </ScrollItem>
               ))}
             </Right>

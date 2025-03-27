@@ -1,29 +1,17 @@
 import { Title } from "@/lib/scroll/components/title";
 import { ScrollStoreProvider } from "@/lib/scroll/context/scroll-context-provider";
-import { uniitechDocs } from "@/docs/docs";
-import { cn, readDocs } from "@/lib/utils";
 import { ScrollContainer } from "@/lib/scroll/components/scroll-container";
 import { ScrollInnerContainer } from "@/lib/scroll/components/scroll-inner-container";
 import { myComponents } from "@/mdx-components";
-import { HTMLAttributes } from "react";
 import Link from "next/link";
+import { allUniiteches } from "content-collections";
+import { MDXContent } from "@content-collections/mdx/react";
 
 export async function Uniitech() {
-  const data = await readDocs(uniitechDocs, {
-    ...myComponents,
-    h2: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-      <h2
-        className={cn(
-          "font-heading mt-12 scroll-m-30 border-b pb-2 text-lg font-semibold tracking-tight first:mt-0",
-          className,
-        )}
-        {...props}
-      />
-    ),
-  });
+  const docs = allUniiteches.sort((a, b) => a.order - b.order);
 
   return (
-    <ScrollStoreProvider ids={data.map((d) => d.id)}>
+    <ScrollStoreProvider ids={docs.map((doc) => doc.id)}>
       <ScrollContainer>
         <Title>
           <h2 className="text-xl text-gray-400">유니아이텍</h2>
@@ -36,9 +24,9 @@ export async function Uniitech() {
         </Title>
         <ScrollInnerContainer>
           <div className="mt-[160px] flex min-h-[calc(100svh-80px)] w-full flex-col justify-around">
-            {data.map((d) => (
-              <div className="flex flex-col items-start justify-center" key={d.id}>
-                {d.doc}
+            {docs.map((doc) => (
+              <div className="flex flex-col items-start justify-center" key={doc.id}>
+                <MDXContent code={doc.mdx} components={myComponents} />
               </div>
             ))}
           </div>

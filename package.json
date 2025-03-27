@@ -30,6 +30,10 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@content-collections/core": "^0.8.2",
+    "@content-collections/markdown": "^0.1.4",
+    "@content-collections/mdx": "^0.2.2",
+    "@content-collections/next": "^0.2.6",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

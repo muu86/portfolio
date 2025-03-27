@@ -4,14 +4,12 @@ import { Node } from "@/lib/flow/components/node/node";
 import { Position } from "@/lib/flow/common/types";
 import { ExternalItem } from "@/components/architecture/external-item";
 import { Left } from "@/lib/scroll/components/left";
-import { applicationDocs } from "@/docs/docs";
 import { ScrollItem } from "@/lib/scroll/components/scroll-item";
 import { ArchitectureDoc } from "@/components/architecture/doc";
 import { Right } from "@/lib/scroll/components/right";
 import { ScrollStoreProvider } from "@/lib/scroll/context/scroll-context-provider";
 import { Title } from "@/lib/scroll/components/title";
 import { ScrollSelector } from "@/lib/scroll/components/scroll-selector";
-import { readDocs } from "@/lib/utils";
 import { ScrollNav } from "@/lib/scroll/components/scroll-nav";
 import { HexAdaptor } from "@/components/architecture/hex-adaptor";
 import { FlowContainer } from "@/lib/flow/components/container/flow-container";
@@ -21,23 +19,36 @@ import { ScrollInnerContainer } from "@/lib/scroll/components/scroll-inner-conta
 import { myComponents } from "@/mdx-components";
 import Link from "next/link";
 import { FlowStoreProvider } from "@/lib/flow/context/flow-context-provider";
+import { allDigitalNutritionApplications } from "content-collections";
+import { MDXContent } from "@content-collections/mdx/react";
 
 const edgeMap: Record<string, { source: string; target: string }[]> = {
-  "application-nestjs": [
+  "projects/digital-nutrition/application/0_nextjs": [
     {
       source: "application-mobile-client",
       target: "application-rest-controller",
     },
   ],
 
-  "application-api": [
+  "projects/digital-nutrition/application/10_api": [
     {
       source: "application-mobile-client",
       target: "application-rest-controller",
     },
   ],
 
-  "application-third-party": [
+  "projects/digital-nutrition/application/20_security": [
+    {
+      source: "application-mobile-client",
+      target: "application-rest-controller",
+    },
+    {
+      source: "application-rest-controller",
+      target: "application-security",
+    },
+  ],
+
+  "projects/digital-nutrition/application/30_third-party": [
     {
       source: "application-third-party",
       target: "application-api-gateway",
@@ -52,7 +63,7 @@ const edgeMap: Record<string, { source: string; target: string }[]> = {
     },
   ],
 
-  "application-subscription": [
+  "projects/digital-nutrition/application/40_subscription": [
     {
       source: "application-app-store",
       target: "application-api-gateway",
@@ -71,18 +82,7 @@ const edgeMap: Record<string, { source: string; target: string }[]> = {
     },
   ],
 
-  "application-security": [
-    {
-      source: "application-mobile-client",
-      target: "application-rest-controller",
-    },
-    {
-      source: "application-rest-controller",
-      target: "application-security",
-    },
-  ],
-
-  "application-orm": [
+  "projects/digital-nutrition/application/50_orm": [
     {
       source: "application-orm",
       target: "application-repository",
@@ -93,7 +93,7 @@ const edgeMap: Record<string, { source: string; target: string }[]> = {
     },
   ],
 
-  "application-outbound": [
+  "projects/digital-nutrition/application/70_log": [
     {
       source: "application-outbound",
       target: "application-cloudwatch",
@@ -106,11 +106,10 @@ const edgeMap: Record<string, { source: string; target: string }[]> = {
 };
 
 export async function Application() {
-  const data = await readDocs(applicationDocs, myComponents);
-
+  const docs = allDigitalNutritionApplications.sort((a, b) => a.order - b.order);
   return (
     <FlowStoreProvider>
-      <ScrollStoreProvider ids={data.map((d) => d.id)} edgeMap={edgeMap}>
+      <ScrollStoreProvider ids={docs.map((doc) => doc.id)} edgeMap={edgeMap}>
         <ScrollContainer>
           <Title>
             <h2 className="text-xl text-gray-500">디지털 뉴트리션</h2>
@@ -129,8 +128,8 @@ export async function Application() {
             <Left>
               <div className="flex h-full items-center justify-center gap-12">
                 <ScrollNav>
-                  {data.map((d) => (
-                    <ScrollSelector key={d.id} id={d.id} title={d.title} />
+                  {docs.map((doc) => (
+                    <ScrollSelector key={doc.id} id={doc.id} title={doc.title} />
                   ))}
                 </ScrollNav>
                 <FlowContainer className="flex h-full w-full flex-row items-center justify-center gap-18">
@@ -290,9 +289,11 @@ export async function Application() {
             </Left>
 
             <Right>
-              {data.map((d) => (
-                <ScrollItem key={d.id} id={d.id}>
-                  <ArchitectureDoc id={d.id}>{d.doc}</ArchitectureDoc>
+              {docs.map((doc) => (
+                <ScrollItem key={doc.id} id={doc.id}>
+                  <ArchitectureDoc id={doc.id}>
+                    <MDXContent code={doc.mdx} components={myComponents} />
+                  </ArchitectureDoc>
                 </ScrollItem>
               ))}
             </Right>

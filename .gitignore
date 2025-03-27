@@ -44,3 +44,4 @@ next-env.d.ts
 /lib/mdx.ts
 /components/toc.tsx
 /hooks/
+/.content-collections
