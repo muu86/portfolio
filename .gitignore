@@ -45,3 +45,5 @@ next-env.d.ts
 /components/toc.tsx
 /hooks/
 /.content-collections
+/components/docs-nav.tsx
+/components/main-nav.tsx

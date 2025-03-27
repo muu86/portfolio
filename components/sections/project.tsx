@@ -5,13 +5,7 @@ import { Separator } from "@/components/ui/separator";
 
 export function Project() {
   return (
-    <section className="mt-32 overflow-x-visible">
-      {/*<div className="mx-auto max-w-5xl">*/}
-      {/*  <div className="w-full border-t-2 border-t-black py-4">*/}
-      {/*    <h1 className="text-xl font-bold">프로젝트</h1>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-
+    <section className="mt-32">
       <Separator className="mx-auto mb-12 max-w-5xl" />
 
       <Application />

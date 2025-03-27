@@ -3,28 +3,22 @@ import { devtools } from "zustand/middleware";
 
 export type ScrollState = {
   ids: string[];
-  selectedIndex: number;
   selectedId: string | null;
-
-  edgeMap: Map<string, { source: string; target: string }[]> | null;
-
+  idToEdges: Map<string, { source: string; target: string }[]> | null;
   isScrolling: boolean;
 };
 
 export type ScrollAction = {
   size: () => number;
-  setSelectedIndex: (index: number) => void;
-  setSelectedId: (id: string | null) => void;
-  setIsScrolling: (isScrolling: boolean) => void;
+  updateSelectedId: (id: string | null) => void;
 };
 
 export type ScrollStore = ScrollState & ScrollAction;
 
 export const defaultInitState: ScrollState = {
   ids: [],
-  selectedIndex: -1,
   selectedId: null,
-  edgeMap: null,
+  idToEdges: null,
 
   isScrolling: false,
 };
@@ -36,12 +30,10 @@ export function createScrollStore(initState: ScrollState = defaultInitState) {
 
       size: () => get().ids.length,
 
-      setSelectedId: (id: string | null) =>
+      updateSelectedId: (id: string | null) =>
         set(() => ({
           selectedId: id,
         })),
-
-      setIsScrolling: (isScrolling: boolean) => set({ isScrolling }),
     })),
   );
 }
