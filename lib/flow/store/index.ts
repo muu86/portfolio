@@ -1,6 +1,6 @@
 import { createStore } from "zustand/vanilla";
 import { devtools } from "zustand/middleware";
-import { Edge, Node, NodeUpdate, Rect } from "@/lib/flow/common/types";
+import { Edge, Node, NodeUpdate, Rect } from "@/lib/flow/types";
 
 export type FlowState = {
   nodes: Map<string, Node>;

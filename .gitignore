@@ -47,3 +47,4 @@ next-env.d.ts
 /.content-collections
 /components/docs-nav.tsx
 /components/main-nav.tsx
+/content/removed.mdx

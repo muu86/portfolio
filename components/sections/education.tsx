@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
-import { SectionContainer } from "@/components/container/section-container";
+import { SectionContainer } from "@/components/sections/section-container";
 import { Title } from "@/components/title";
+import { Fragment } from "react";
 
 const items = [
   {
@@ -23,7 +24,7 @@ export function Education() {
 
       <div className="flex flex-col justify-center gap-8 py-8">
         {items.map((item, index) => (
-          <>
+          <Fragment key={item.title}>
             <div key={item.title} className="flex flex-col gap-4">
               <h2 className="text-2xl font-bold">{item.title}</h2>
 
@@ -32,7 +33,7 @@ export function Education() {
             </div>
 
             {index < items.length - 1 && <Separator />}
-          </>
+          </Fragment>
         ))}
       </div>
     </SectionContainer>

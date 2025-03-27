@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Position } from "@/lib/flow/common/types";
+import { Position } from "@/lib/flow/types";
 import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
 import { NodeEdge } from "@/lib/flow/components/node/node";
 

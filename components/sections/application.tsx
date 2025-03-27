@@ -1,7 +1,7 @@
 import { HexCore } from "@/components/architecture/hex-core";
 import Image from "next/image";
 import { Node } from "@/lib/flow/components/node/node";
-import { Position } from "@/lib/flow/common/types";
+import { Position } from "@/lib/flow/types";
 import { ExternalItem } from "@/components/architecture/external-item";
 import { Left } from "@/lib/scroll/components/left";
 import { ScrollItem } from "@/lib/scroll/components/scroll-item";

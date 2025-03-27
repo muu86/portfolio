@@ -20,11 +20,6 @@ export type Rect = {
   height: number;
 };
 
-export type Dimension = {
-  width: number;
-  height: number;
-};
-
 export type Node = Rect & {
   id: string;
 };

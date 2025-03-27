@@ -1,4 +1,4 @@
-import { Container } from "@/components/architecture/container";
+import { CloudContainer } from "@/components/architecture/cloud-container";
 import { Icon } from "@/components/architecture/icon";
 import { ArchitectureDoc } from "@/components/architecture/doc";
 import { ScrollItem } from "@/lib/scroll/components/scroll-item";
@@ -36,7 +36,7 @@ export async function Infra() {
           <Left>
             <div className="relative flex h-full w-full flex-col items-center justify-center">
               <div className="flex h-full w-full flex-col items-center justify-center gap-2">
-                <Container
+                <CloudContainer
                   id="projects/digital-nutrition/infra/0_terraform"
                   title="Terraform"
                   source="tech/terraform.svg"
@@ -63,7 +63,7 @@ export async function Infra() {
                       </div>
                     </div>
 
-                    <Container title="vpc" color="purple" source="aws/Virtual-private-cloud-VPC_32.svg">
+                    <CloudContainer title="vpc" color="purple" source="aws/Virtual-private-cloud-VPC_32.svg">
                       <div className="flex w-full flex-col gap-8">
                         <div className="flex items-center justify-around gap-8">
                           <Icon source="aws/Arch_AWS-WAF_32.svg" name="WAF" />
@@ -76,7 +76,7 @@ export async function Infra() {
                           <Icon source="aws/Arch_Amazon-EC2_32.svg" name="Bastion" />
                         </div>
 
-                        <Container
+                        <CloudContainer
                           id={[
                             "projects/digital-nutrition/infra/10_eks",
                             "projects/digital-nutrition/infra/20_eks-environment",
@@ -85,7 +85,7 @@ export async function Infra() {
                           source="aws/Arch_Amazon-Elastic-Kubernetes-Service_32.svg"
                           color="orange"
                         >
-                          <Container
+                          <CloudContainer
                             id="projects/digital-nutrition/infra/30_karpenter"
                             title="karpenter-autoscaling"
                             source="aws/Auto-Scaling-group_32.svg"
@@ -105,12 +105,12 @@ export async function Infra() {
                                 source="aws/Res_Amazon-EC2_Instance_48.svg"
                               />
                             </div>
-                          </Container>
-                        </Container>
+                          </CloudContainer>
+                        </CloudContainer>
                       </div>
-                    </Container>
+                    </CloudContainer>
                   </div>
-                </Container>
+                </CloudContainer>
               </div>
             </div>
           </Left>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
-import { NodeUpdate } from "@/lib/flow/common/types";
+import { NodeUpdate } from "@/lib/flow/types";
 
 export function useMutationObserver() {
   const setMutationObserver = useFlowStore((s) => s.setMutationObserver);

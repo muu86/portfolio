@@ -15,7 +15,7 @@ export type ContainerProps = {
   className?: string;
 };
 
-export function Container({
+export function CloudContainer({
   id,
   title,
   source,

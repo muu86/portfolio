@@ -3,7 +3,7 @@
 import { useScrollStore } from "@/lib/scroll/context/scroll-context-provider";
 import { useFlowStore } from "@/lib/flow/context/flow-context-provider";
 import { useEffect } from "react";
-import { Edge } from "@/lib/flow/common/types";
+import { Edge } from "@/lib/flow/types";
 
 export function FlowSelector() {
   const selectedId = useScrollStore((s) => s.selectedId);
