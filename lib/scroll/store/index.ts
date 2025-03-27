@@ -1,5 +1,4 @@
 import { createStore } from "zustand/vanilla";
-import { devtools } from "zustand/middleware";
 
 export type ScrollState = {
   ids: string[];
@@ -9,7 +8,6 @@ export type ScrollState = {
 };
 
 export type ScrollAction = {
-  size: () => number;
   updateSelectedId: (id: string | null) => void;
 };
 
@@ -19,21 +17,16 @@ export const defaultInitState: ScrollState = {
   ids: [],
   selectedId: null,
   idToEdges: null,
-
   isScrolling: false,
 };
 
 export function createScrollStore(initState: ScrollState = defaultInitState) {
-  return createStore<ScrollStore>()(
-    devtools((set, get) => ({
-      ...initState,
+  return createStore<ScrollStore>()((set) => ({
+    ...initState,
 
-      size: () => get().ids.length,
-
-      updateSelectedId: (id: string | null) =>
-        set(() => ({
-          selectedId: id,
-        })),
-    })),
-  );
+    updateSelectedId: (id: string | null) =>
+      set(() => ({
+        selectedId: id,
+      })),
+  }));
 }

@@ -1,4 +1,4 @@
-import { Position, type Coordinates, Node } from "@/lib/flow/types";
+import { type Coordinates, Node, Position } from "@/lib/flow/types";
 
 export function getEdgeCenter({
   sourceX,

@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { allDigitalNutritionApplications, allDigitalNutritionInfras } from "content-collections";
 import { ScrollStoreProvider } from "@/lib/scroll/context/scroll-context-provider";
 import { idToEdges } from "@/config/id-to-edges";
+import { ReactNode } from "react";
 
 const notoSans = Noto_Sans_KR({
   variable: "--font-noto-sans",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   const projectApplication = allDigitalNutritionApplications.map((doc) => doc.id);
   const projectInfra = allDigitalNutritionInfras.map((doc) => doc.id);

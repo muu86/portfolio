@@ -1,5 +1,4 @@
 import { createStore } from "zustand/vanilla";
-import { devtools } from "zustand/middleware";
 import { Edge, Node, NodeUpdate, Rect } from "@/lib/flow/types";
 
 export type FlowState = {
@@ -16,11 +15,9 @@ export type FlowState = {
   mutationObserver: MutationObserver | null;
 
   selectedEdges: Edge[];
-  selectedEdgeIndex: number;
 };
 
 export type FlowAction = {
-  addNode: (node: Node) => void;
   addEdge: (edge: Edge) => void;
 
   updateNodes: (updates: NodeUpdate[]) => void;
@@ -28,8 +25,6 @@ export type FlowAction = {
   updateContainerRect: (rect: Rect) => void;
 
   setMutationObserver: (mutationObserver: MutationObserver | null) => void;
-
-  setSelectedEdgeIndex: (index: number) => void;
 
   updateSelectedEdges: (edges: Edge[]) => void;
 };
@@ -50,63 +45,48 @@ export const defaultInitState: FlowState = {
   mutationObserver: null,
 
   selectedEdges: [],
-  selectedEdgeIndex: -1,
 };
 
 export function createFlowStore(initState: FlowState = defaultInitState) {
-  return createStore<FlowStore>()(
-    devtools(
-      (set, get) => ({
-        ...initState,
+  return createStore<FlowStore>()((set, get) => ({
+    ...initState,
 
-        addEdge: (edge: Edge) => {
-          const { edges } = get();
-          if (edges.find((e) => e.sourceId === edge.sourceId && e.targetId === edge.targetId) === undefined) {
-            set((s) => ({ edges: [...s.edges, edge] }));
-          }
-        },
+    addEdge: (edge: Edge) => {
+      const { edges } = get();
+      if (edges.find((e) => e.sourceId === edge.sourceId && e.targetId === edge.targetId) === undefined) {
+        set((s) => ({ edges: [...s.edges, edge] }));
+      }
+    },
 
-        updateNodes: (updates: NodeUpdate[]) => {
-          const { nodes } = get();
-          for (const update of updates) {
-            const { id } = update;
-            const { top, right, bottom, left, width, height } = update.rect;
-            nodes.set(id, {
-              id,
-              top,
-              right,
-              bottom,
-              left,
-              width,
-              height,
-            });
-          }
+    updateNodes: (updates: NodeUpdate[]) => {
+      const { nodes } = get();
+      for (const update of updates) {
+        const { id } = update;
+        const { top, right, bottom, left, width, height } = update.rect;
+        nodes.set(id, {
+          id,
+          top,
+          right,
+          bottom,
+          left,
+          width,
+          height,
+        });
+      }
 
-          set({ nodes: new Map(nodes) });
-        },
+      set({ nodes: new Map(nodes) });
+    },
 
-        updateContainerRect: ({ top, right, bottom, left, width, height }: Rect) => {
-          set({ top, right, bottom, left, width, height });
-        },
+    updateContainerRect: ({ top, right, bottom, left, width, height }: Rect) => {
+      set({ top, right, bottom, left, width, height });
+    },
 
-        setMutationObserver: (mutationObserver: MutationObserver | null) => {
-          set({ mutationObserver });
-        },
+    setMutationObserver: (mutationObserver: MutationObserver | null) => {
+      set({ mutationObserver });
+    },
 
-        updateSelectedEdges: (edges: Edge[]) => {
-          set({ selectedEdges: edges });
-        },
-
-        setSelectedEdgeIndex: (index: number) => {
-          set({ selectedEdgeIndex: index });
-        },
-      }),
-      // {
-      //   name: "node-store",
-      //   serialize: {
-      //     replacer: (key, value) => (value instanceof Map ? [...value] : value),
-      //   },
-      // },
-    ),
-  );
+    updateSelectedEdges: (edges: Edge[]) => {
+      set({ selectedEdges: edges });
+    },
+  }));
 }

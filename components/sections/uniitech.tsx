@@ -6,7 +6,7 @@ import { allUniiteches } from "content-collections";
 import { MDXContent } from "@content-collections/mdx/react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { HTMLAttributes } from "react";
+import { Fragment, HTMLAttributes } from "react";
 
 export async function Uniitech() {
   const docs = allUniiteches.sort((a, b) => a.order - b.order);
@@ -25,7 +25,7 @@ export async function Uniitech() {
       <ScrollInnerContainer>
         <div className="z-40 mt-32 flex w-full flex-col justify-around gap-8 py-8">
           {docs.map((doc, index) => (
-            <>
+            <Fragment key={doc.id}>
               <div className="flex flex-col items-start justify-center" key={doc.id}>
                 <MDXContent
                   code={doc.mdx}
@@ -44,7 +44,7 @@ export async function Uniitech() {
                 />
               </div>
               {index < docs.length - 1 && <Separator />}
-            </>
+            </Fragment>
           ))}
         </div>
       </ScrollInnerContainer>

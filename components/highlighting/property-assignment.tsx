@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef } from 'react';
-import clsx from 'clsx';
+import { ComponentPropsWithoutRef } from "react";
+import clsx from "clsx";
 
-type Props = ComponentPropsWithoutRef<'span'> & {
+type Props = ComponentPropsWithoutRef<"span"> & {
   param: string;
   className?: string;
 };
@@ -9,7 +9,7 @@ type Props = ComponentPropsWithoutRef<'span'> & {
 export function PropertyAssignment({ param, className, children }: Props) {
   return (
     <>
-      <span className={clsx('text-fuchsia-600 dark:text-cyan-400', className)}>
+      <span className={clsx("text-fuchsia-600 dark:text-cyan-400", className)}>
         {param}
         {` = `}
       </span>

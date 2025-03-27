@@ -29,7 +29,6 @@ export function Node({
   className,
   children,
 }: PropsWithChildren<NodeProps>) {
-  // const resizeObserver = useFlowStore((s) => s.resizeObserver);
   const mutationObserver = useFlowStore((s) => s.mutationObserver);
 
   const ref = useNode(id, canStick);
@@ -38,7 +37,6 @@ export function Node({
   useEffect(() => {
     if (!ref.current) return;
 
-    // resizeObserver?.observe(ref.current);
     mutationObserver?.observe(ref.current, { attributes: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mutationObserver]);
