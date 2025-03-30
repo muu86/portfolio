@@ -31,7 +31,8 @@ const digitalNutritionApplication = getCollection(
 );
 const digitalNutritionInfra = getCollection("digitalNutritionInfra", "projects/digital-nutrition/infra");
 const uniitech = getCollection("uniitech", "projects/uniitech");
+const footer = getCollection("footer", "footer");
 
 export default defineConfig({
-  collections: [digitalNutritionApplication, digitalNutritionInfra, uniitech],
+  collections: [digitalNutritionApplication, digitalNutritionInfra, uniitech, footer],
 });
