@@ -14,7 +14,7 @@ export function Hero() {
       <Canvas
         className="absolute bottom-0 -z-10"
         pov={30}
-        camPos={[0, 1.6, 4]}
+        camPos={[0, 1.6, 5]}
         camLook={[0, 1.6, 0]}
         isAnimating={false}
       />

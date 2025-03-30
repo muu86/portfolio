@@ -34,7 +34,7 @@ export async function Uniitech() {
       </ScrollNav>
       <ProjectGridContainer>
         <ProjectLeft>
-          <Canvas camPos={[1.0, 1.5, 0]} camLook={[0, 0, 0]} />
+          <Canvas camPos={[2.0, 1.5, -4.0]} camLook={[0, 1.0, 0]} />
         </ProjectLeft>
         <ProjectRight>
           {docs.map((doc) => (
@@ -44,32 +44,6 @@ export async function Uniitech() {
               </ArchitectureDoc>
             </ScrollItem>
           ))}
-          {/*<div className="h-full">*/}
-          {/*  <div className="z-40 flex w-full flex-col justify-around gap-8 py-8 pt-60">*/}
-          {/*    {docs.map((doc, index) => (*/}
-          {/*      <Fragment key={doc.id}>*/}
-          {/*        <div className="flex flex-col items-start justify-center" key={doc.id}>*/}
-          {/*          <MDXContent*/}
-          {/*            code={doc.mdx}*/}
-          {/*            components={{*/}
-          {/*              ...myComponents,*/}
-          {/*              h2: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (*/}
-          {/*                <h2*/}
-          {/*                  className={cn(*/}
-          {/*                    "font-heading mt-12 scroll-m-30 text-2xl font-bold tracking-tight first:mt-0",*/}
-          {/*                    className,*/}
-          {/*                  )}*/}
-          {/*                  {...props}*/}
-          {/*                />*/}
-          {/*              ),*/}
-          {/*            }}*/}
-          {/*          />*/}
-          {/*        </div>*/}
-          {/*        {index < docs.length - 1 && <Separator />}*/}
-          {/*      </Fragment>*/}
-          {/*    ))}*/}
-          {/*  </div>*/}
-          {/*</div>*/}
         </ProjectRight>
       </ProjectGridContainer>
     </ProjectContainer>

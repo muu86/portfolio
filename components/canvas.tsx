@@ -50,6 +50,7 @@ export default function Canvas({
 
     addAmbientLight(scene);
     addDirectionalLight(scene);
+    addDirectionalLight(scene);
 
     camera.position.set(...camPos);
     camera.lookAt(...camLook);
@@ -81,8 +82,8 @@ function addAmbientLight(scene: THREE.Scene) {
 
 function addDirectionalLight(scene: THREE.Scene) {
   const light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(0, 10, 0);
-  light.target.position.set(-5, 0, 0);
+  light.position.set(0, 10, 5);
+  light.target.position.set(-5, 0, -5);
 
   scene.add(light);
   scene.add(light.target);
@@ -131,7 +132,7 @@ function loadAnimation(
     mixer?.update(delta);
 
     if (isAnimating) {
-      angle += 0.002;
+      angle += 0.001;
       camera.position.x = radius * Math.cos(angle);
       camera.position.z = radius * Math.sin(angle);
       camera.lookAt(0.0, 0.0, 0.0);
