@@ -1,17 +1,17 @@
-import { Hero } from "@/components/sections/hero";
-import { Career } from "@/components/sections/career";
-import { Project } from "@/components/sections/project";
-import { Education } from "@/components/sections/education";
-import { PersonalProject } from "@/components/sections/personal-project";
+import { Hero } from "@/components/views/hero";
+import { Career } from "@/components/views/career";
+import { Project } from "@/components/views/project";
+import { Education } from "@/components/views/education";
+import { PersonalProject } from "@/components/views/personal-project";
 
 export default async function Home() {
   return (
     <>
       <Hero />
 
-      <Career />
-
       <Project />
+
+      <Career />
 
       <PersonalProject />
 
