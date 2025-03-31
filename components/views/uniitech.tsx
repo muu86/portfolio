@@ -34,7 +34,7 @@ export async function Uniitech() {
       </ScrollNav>
       <ProjectGridContainer>
         <ProjectLeft>
-          <Canvas camPos={[2.0, 1.5, -4.0]} camLook={[0, 1.0, 0]} />
+          <Canvas className="aspect-square h-auto w-full" camPos={[2.0, 1.5, -4.0]} camLook={[0, 0, 0]} />
         </ProjectLeft>
         <ProjectRight>
           {docs.map((doc) => (
