@@ -7,8 +7,8 @@ import { Edge } from "@/lib/flow/types";
 
 export function FlowSelector() {
   const selectedId = useScrollStore((s) => s.selectedId);
-
   const idToEdges = useScrollStore((s) => s.idToEdges);
+
   const edges = useFlowStore((s) => s.edges);
   const setSelectedEdges = useFlowStore((s) => s.updateSelectedEdges);
 

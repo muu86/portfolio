@@ -7,13 +7,13 @@ const items = [
   {
     title: "포트폴리오 웹사이트",
     link: "https://github.com/muu86/portfolio",
-    tech: "Next.js, Vercel, Zustand, Tailwind, Shadcn, MDX",
+    tech: "Next.js, Vercel, Zustand, Content Collections, Three.js, Tailwind, Shadcn",
   },
 
   {
     title: "동네 육아맘 찾기",
     link: "https://github.com/muu86/mysns-springboot",
-    tech: "SpringBoot, PostgreSQL, GraphQL",
+    tech: "SpringBoot, PostgreSQL, GraphQL, Querydsl",
     description: "데이터베이스의 Spatial Query를 이용해서 위치 기반 SNS를 구현",
   },
   {
