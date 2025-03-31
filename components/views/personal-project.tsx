@@ -19,7 +19,7 @@ const items = [
   {
     title: "골프 스윙 분석 AI",
     link: "https://github.com/muu86/golfriend-front-update2",
-    tech: "Python, Flask, Yolo",
+    tech: "Flask, Yolo",
     description: "골프 스윙 분석을 위해서 스윙 동영상을 8개의 구분 동작 이미지로 분류하는 RNN 모델",
   },
 ];
