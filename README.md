@@ -28,19 +28,25 @@ edges={[{ id: "application-api-gateway" }]}
 Node마다 unique한 ID를 부여하고, edges에 target node id, edge type 등을 지정하면 svg path를 생성합니다. 아이콘, 이미지 외에도 마그다운 문서 등 DOM의 다양한 요소들을 path로 연결하고 싶었습니다.
 그래서 서버에서 렌더링한 마크다운을 Client Component children으로 전달하도록 Node 컴포넌트를 작성했습니다. 
 
-그러나, 사이트에 자주 사용된 **sticky position**과 관련된 문제를 마주했습니다.
-스크롤 할 때마다 sticky가 적용된 Element의 위치가 재조정되면서 **SVG Path가 튀는 문제**가 발생했습니다.
-Scroll Event Listener로 위치 업데이트를 했으나 약간의 시간차를 해결하지 못 했습니다. 
+### Scroll 할 때 SVG가 튀는 문제
 
-결국, 원래 목적은 이루지 못 하고 특정 영역에서만 SVG를 적용하는 것으로 타협했습니다.
+사이트에 자주 사용된 **sticky position**과 관련된 문제를 마주했습니다.
+스크롤 할 때마다 sticky가 적용된 Element의 위치가 재조정되면서 **SVG Path가 튀는 문제**가 발생했습니다.
+Scroll Event Listener에서 이루어지는 위치 업데이트의 시간차를 해결하지 못 했습니다. 
+
+결국, 전체 DOM에 Path를 적용한다는 원래 목적은 이루지 못 하고 특정 영역에서만 SVG를 적용하는 것으로 타협했습니다.
+
+## Scroll
+
+IntersectionObserver API를 사용했습니다.
 
 ### 엣지 하이라이트
 
 특정 문서가 스크롤 혹은 선택되면, 엣지 하이라이트를 적용했습니다.
 
-스크롤 모듈과 엣지 모듈을 분리하고 싶었기 때문에 둘 사이를 연결하는 [컴포넌트](components/flow-selector.tsx)를 만들었습니다.
+- 스크롤 모듈과 엣지 모듈을 분리하고, [브릿지 컴포넌트](components/flow-selector.tsx)를 두었습니다.
 
-엣지와 스크롤 아이템 간의 연결은 [하드코딩](config/id-to-edges.ts)했습니다.
+- 엣지와 스크롤 아이템 간의 연결 정보는 [하드코딩](config/id-to-edges.ts)했습니다.
 
 
 ## 마크다운
@@ -71,11 +77,12 @@ export async function Application() {
 
 ## Three.js
 
-기존 esset들을 **blender**로 수정해서 사용했습니다.
+기존 asset들을 **blender**로 수정해서 사용했습니다.
 
-소스
+asset
 - [캐릭터](https://poly.pizza/m/6jUuCHmQ1I)
-- [의자](https://assetstore.unity.com/packages/3d/props/interior/interior-low-poly-3d-models-pack-193487)
+- [가구](https://assetstore.unity.com/packages/3d/props/interior/interior-low-poly-3d-models-pack-193487)
 - [기타](https://market.pmnd.rs)
 
-타이핑 모션은 [**maximo** 애니메이션](https://www.mixamo.com/#/?page=1&query=typing)을 적용했습니다.
+animation
+- [**Mixamo** 애니메이션](https://www.mixamo.com/#/?page=1&query=typing)을 적용했습니다.
