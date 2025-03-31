@@ -10,9 +10,9 @@ import Canvas from "@/components/canvas";
 
 export function Hero() {
   return (
-    <main className="relative mx-auto flex h-[100vh] w-full max-w-5xl flex-col items-center justify-center gap-8">
-      <div className="flex items-center justify-center">
-        <Block className="flex w-full grow flex-col font-mono text-4xl font-semibold">
+    <main className="relative mx-auto flex h-[90vh] w-full max-w-5xl flex-col">
+      <div className="flex grow items-center justify-center">
+        <Block className="flex w-full flex-col font-mono text-4xl font-semibold">
           <Line
             tokens={[
               <Keyword name="val" key={id()} className="text-gray-500" />,
@@ -49,13 +49,7 @@ export function Hero() {
         </Block>
       </div>
 
-      <Canvas
-        className="-z-10 max-w-xl basis-1/3"
-        pov={30}
-        camPos={[0, 1.0, 2.0]}
-        camLook={[0, 0.92, 0]}
-        isAnimating={false}
-      />
+      <Canvas className="h-1/3" pov={30} camPos={[0, 1.0, 2.0]} camLook={[0, 0.92, 0]} isAnimating={false} />
     </main>
   );
 }

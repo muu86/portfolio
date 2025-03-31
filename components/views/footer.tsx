@@ -1,5 +1,4 @@
 import { HTMLAttributes } from "react";
-import { SectionContainer } from "@/components/views/section-container";
 import { allFooters } from "content-collections";
 import { MDXContent } from "@content-collections/mdx/react";
 import { myComponents } from "@/mdx-components";
@@ -11,18 +10,16 @@ export function Footer() {
   if (doc === null) return null;
 
   return (
-    <SectionContainer className="my-32">
-      <div className="flex flex-col justify-center gap-8 py-8">
-        <MDXContent
-          code={doc.mdx}
-          components={{
-            ...myComponents,
-            p: ({ className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-              <p className={cn("leading-7 text-gray-500 [&:not(:first-child)]:mt-6", className)} {...props} />
-            ),
-          }}
-        />
-      </div>
-    </SectionContainer>
+    <footer className="border-gray-400y mx-auto my-32 w-full max-w-5xl border-t">
+      <MDXContent
+        code={doc.mdx}
+        components={{
+          ...myComponents,
+          p: ({ className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
+            <p className={cn("leading-7 text-gray-500 [&:not(:first-child)]:mt-6", className)} {...props} />
+          ),
+        }}
+      />
+    </footer>
   );
 }

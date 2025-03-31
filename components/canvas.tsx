@@ -23,55 +23,6 @@ type Props = {
   className?: string;
 };
 
-export default function Canvas({
-  width,
-  height,
-  pov = 75,
-  src = "/mj-office.glb",
-
-  camPos = defaultVec3,
-  camLook = defaultVec3,
-
-  isAnimating = true,
-
-  className,
-}: Props) {
-  const mountRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (mountRef.current === null) return;
-
-    let w: number, h: number;
-    if (width && height) {
-      w = width;
-      h = height;
-    } else {
-      w = mountRef.current.getBoundingClientRect().width;
-      h = mountRef.current.getBoundingClientRect().height;
-    }
-
-    const scene = new THREE.Scene();
-
-    const camera = new THREE.PerspectiveCamera(pov, w / h, 0.1, 1000);
-
-    const renderer = createRenderer(w, h);
-    mountRef.current.appendChild(renderer.domElement);
-
-    addAmbientLight(scene);
-    addDirectionalLight(scene);
-    addDirectionalLight(scene);
-
-    camera.position.set(...camPos);
-    camera.lookAt(...camLook);
-
-    const animate = loadAnimation(src, camera, renderer, scene, isAnimating);
-
-    animate();
-  }, [width, height, src, camPos, camLook, isAnimating, pov]);
-
-  return <div className={cn("h-full w-full", className)} ref={mountRef} />;
-}
-
 function createRenderer(width: number, height: number) {
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(width, height);
@@ -151,4 +102,53 @@ function loadAnimation(
   };
 
   return animate;
+}
+
+export default function Canvas({
+  width,
+  height,
+  pov = 75,
+  src = "/mj-office.glb",
+
+  camPos = defaultVec3,
+  camLook = defaultVec3,
+
+  isAnimating = true,
+
+  className,
+}: Props) {
+  const mountRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (mountRef.current === null) return;
+
+    let w: number, h: number;
+    if (width && height) {
+      w = width;
+      h = height;
+    } else {
+      w = mountRef.current.getBoundingClientRect().width;
+      h = mountRef.current.getBoundingClientRect().height;
+    }
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(pov, w / h, 0.1, 1000);
+
+    const renderer = createRenderer(w, h);
+    mountRef.current.appendChild(renderer.domElement);
+
+    addAmbientLight(scene);
+    addDirectionalLight(scene);
+    addDirectionalLight(scene);
+
+    camera.position.set(...camPos);
+    camera.lookAt(...camLook);
+
+    const animate = loadAnimation(src, camera, renderer, scene, isAnimating);
+
+    animate();
+  }, [width, height, src, camPos, camLook, isAnimating, pov]);
+
+  return <div className={cn("h-full w-full", className)} ref={mountRef} />;
 }
