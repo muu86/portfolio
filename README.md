@@ -53,7 +53,8 @@ IntersectionObserver API를 사용했습니다.
 
 [**@content-collections**](https://www.content-collections.dev/) 라이브러리 사용해서 문서를 [구조화](content/projects/digital-nutrition/application)했습니다.
 
-빌드 타임에 content-collections가 마크다운을 파싱하고 생성한 JSON을 서버 렌더링했습니다.
+
+빌드 타임에 content-collections가 [마크다운을 파싱](content-collections.ts)하고 생성한 JSON을 서버 렌더링했습니다.
 
 ```typescript jsx
 export async function Application() {
