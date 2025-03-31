@@ -34,6 +34,16 @@ export function Hero() {
                 </String>,
               ]}
             />
+            <Line
+              className="mt-8 whitespace-nowrap"
+              tokens={[
+                <Variable name="email" className="text-gray-500" key={id()} />,
+                <Assignment key={id()} className="text-gray-500" />,
+                <String className="font-sans text-pretty" key={id()}>
+                  mu8786@gmail.com
+                </String>,
+              ]}
+            />
           </Block>
           <Line tokens={[<Brace type=")" key={id()} />]} />
         </Block>
