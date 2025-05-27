@@ -26,13 +26,13 @@ function getRandomLeave() {
   return leaves[Math.floor(Math.random() * leaves.length)]
 }
 
-function randomLeafColor(): string {
-  const h = 100 + Math.random() * 40
-  const c = 0.18 + Math.random() * 0.1
-  const l = 0.45 + Math.random() * 0.3
+// function randomLeafColor(): string {
+//   const h = 100 + Math.random() * 40
+//   const c = 0.18 + Math.random() * 0.1
+//   const l = 0.45 + Math.random() * 0.3
 
-  return `oklch(${l.toFixed(3)} ${c.toFixed(3)} ${h.toFixed(1)})`
-}
+//   return `oklch(${l.toFixed(3)} ${c.toFixed(3)} ${h.toFixed(1)})`
+// }
 
 let seed = 0
 // function goldenLeafColor(): string {
